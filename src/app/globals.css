@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* Site header hidden (About side-scroll sets `data-header="hidden"`), unless the mouse is at the top (`data-header-peek`). */
+@custom-variant header-hidden (:where(html[data-header="hidden"]:not([data-header-peek])) &);
+
+/*
+ * Cozzi theme — sourced from the Figma style board (colors, fonts, buttons)
+ * and the desktop page (type scale). Tailwind's default palette is cleared so
+ * only brand colors can be used.
+ */
+@theme {
+  --color-*: initial;
+
+  /* Brand palette */
+  --color-ink: #0a0605;
+  --color-espresso: #452a20;
+  --color-rust: #87482f;
+  --color-caramel: #ce893b;
+  --color-sand: #d5b181;
+  --color-olive: #6c5e3b;
+  --color-dusk: #2f6783;
+  --color-cream: #fff9e5;
+  --color-parchment: #fbf2d4;
+  --color-white: #ffffff;
+
+  /* Supporting neutrals used in the page design */
+  --color-bone: #ddd5ba; /* announcement text */
+  --color-paper: #fffef8; /* product card */
+  --color-mocha: #ba9971; /* arrow icons on dark */
+  --color-ash: #aaaaaa; /* "coming soon" badge */
+
+  /* Semantic aliases */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-ink);
+
+  /* Fonts — Banter Grotesk for display, TT Neoris for all body text */
+  --font-display: var(--font-banter), "Banter Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-neoris), "TT Neoris", ui-sans-serif, system-ui, sans-serif;
+
+  /* Body copy in Figma is TT Neoris Hairline */
+  --font-weight-hairline: 100;
+
+  /* Type scale (desktop values from Figma) */
+  --text-display-xl: 87px;
+  --text-display-xl--line-height: 83px;
+  --text-display-xl--letter-spacing: -0.03em;
+
+  --text-display-lg: 60px;
+  --text-display-lg--line-height: 55px;
+  --text-display-lg--letter-spacing: -0.03em;
+
+  --text-heading: 37px;
+  --text-heading--line-height: 37px;
+  --text-heading--letter-spacing: -0.03em;
+
+  --text-lead: 32px;
+  --text-lead--line-height: 0.95;
+  --text-lead--letter-spacing: -0.02em;
+
+  --text-body: 18px;
+  --text-body--line-height: 1.2;
+
+  --text-label-lg: 18px;
+  --text-label-lg--line-height: 20.4px;
+  --text-label-lg--letter-spacing: 0.1em;
+
+  --text-label: 16px;
+  --text-label--line-height: 24px;
+  --text-label--letter-spacing: 0.1em;
+
+  --text-caption: 13px;
+  --text-caption--line-height: 1.3;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* No page scrollbar on any OS (Windows draws a solid gutter): the site runs edge to edge.
+       Scrolling still works (wheel, touch, keys, Lenis). */
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    @apply bg-background font-sans font-hairline text-body text-foreground;
+  }
+}
+
+/*
+ * Responsive scaling: compositions are built in design px (390px mobile frame below
+ * md, 1280px desktop frame above) and scaled to the viewport with CSS zoom — the desktop
+ * frame keeps growing up to a 1920px viewport (zoom 1.5). See src/lib/design.ts.
+ */
+:root {
+  --zoom: 1;
+}
+
+@utility design-zoom {
+  zoom: var(--zoom);
+}
+
+/*
+ * Sticky split sections (Contact, Music), md+. The copy enters with the section like a normal layout,
+ * then `position: sticky; bottom` holds it in the lower part of the screen while the visual column
+ * keeps scrolling up. Both sit at the bottom of the row, so they release together exactly when their
+ * bottoms line up — and the sticky offset equals the section's bottom padding, so that's also where
+ * the next section begins.
+ * Spacing is Figma's, in design px: set `--split-top` / `--split-bottom` on the section. The section
+ * sits outside the zoomed frame, so its padding is multiplied by --zoom; the sticky copy is inside it.
+ */
+@utility sticky-split {
+  /* Figma height, not the full-screen minimum other sections use (unless --split-min sets one). */
+  min-height: var(--split-min, 0) !important;
+  padding-top: calc(var(--split-top) * var(--zoom));
+  padding-bottom: calc(var(--split-bottom) * var(--zoom));
+}
+
+@utility sticky-bottom {
+  position: sticky;
+  bottom: var(--split-bottom);
+  align-self: flex-end;
+}
+
+/* Film-grain overlay (Figma "Noise" effect). Add to a positioned element; sits above its background, below its content. */
+@utility noise {
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.4 -0.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Page transitions: the curved wipe (usePageTransition) replaces the default crossfade. The new page
+   sits on top of the old one; the backdrop shows through as the old page drifts up. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+::view-transition {
+  background-color: var(--color-ink);
+}
+
+/* Intro unblur (useIntroUnblur): words start hidden and blurred, so nothing flashes before hydration.
+   Visible as-is with reduced motion, and without JS (<noscript> rule in the root layout). */
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro-unblur] [data-word] {
+    opacity: 0;
+    filter: blur(12px);
+  }
+}
+
+/* Preloader (usePreloader): already played this visit (head script) → never paint it. */
+[data-preloaded] .preloader {
+  display: none;
+}
