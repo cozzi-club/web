@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 /**
- * Scroll-scrubbed "Less is more" reveal (md+, motion allowed). The section pins while the heading
+ * Scroll-scrubbed "For the buna enthusiasts" reveal (md+, motion allowed). The section pins while the heading
  * fills in word by word (50% → full ink) and the photos fade and rise into place one at a time,
  * in DOM order, overlapping the copy and finishing just after it.
  * `words` holds the heading's word spans; `photos` is the parent of the photo wrappers.

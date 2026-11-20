@@ -10,6 +10,8 @@ export type Box = { x: number; y: number; w: number; h: number };
 export type Placement = Box & {
   src: string;
   alt?: string;
+  /** Plays this video (muted, looping, inline) in the box instead, with `src` as its poster. */
+  video?: string;
   /** Optional scroll drift in px (see `Parallax`). */
   parallax?: number;
   /** Mobile frame box; `null` hides the image on mobile. Defaults to the desktop box. */
@@ -23,7 +25,7 @@ type Props = Placement & {
 };
 
 /** Absolutely positioned image placed with Figma coordinates (desktop + optional mobile box). */
-export function PositionedImage({ src, alt = "", x, y, w, h, mobile, parallax, anchor, priority, className }: Props) {
+export function PositionedImage({ src, alt = "", video, x, y, w, h, mobile, parallax, anchor, priority, className }: Props) {
   const m = mobile ?? { x, y, w, h };
   const style = {
     "--x": `${x}px`,
@@ -42,7 +44,22 @@ export function PositionedImage({ src, alt = "", x, y, w, h, mobile, parallax, a
     className,
   );
   const sizes = designSizes(w, m.w);
-  const image = <Image src={src} alt={alt} fill sizes={sizes} priority={priority} />;
+  const image = video ? (
+    <video
+      src={video}
+      poster={src}
+      aria-label={alt || undefined}
+      aria-hidden={alt ? undefined : true}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className="absolute inset-0 size-full object-cover"
+    />
+  ) : (
+    <Image src={src} alt={alt} fill sizes={sizes} priority={priority} />
+  );
 
   return parallax ? (
     <Parallax distance={parallax} anchor={anchor} className={classes} style={style}>

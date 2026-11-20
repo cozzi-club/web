@@ -20,6 +20,8 @@ export type HeroModel = {
   drift: number;
   /** `model` of the partner this object periodically morph-swaps with (declare on one side). */
   swapWith?: string;
+  /** Scales the model within any box it fills, its own or its swap partner's (default 1). */
+  size?: number;
 };
 
 type Options = {
@@ -36,14 +38,14 @@ type Options = {
 
 const FOV = 30;
 
-/** Poses `object` and scales/centres it to fill a w×h box around the origin. */
-function fitInto(object: THREE.Object3D, pose: HeroModel["pose"], w: number, h: number) {
+/** Poses `object` and scales/centres it to fill a w×h box around the origin, times `size`. */
+function fitInto(object: THREE.Object3D, { pose, size: k = 1 }: Pick<HeroModel, "pose" | "size">, w: number, h: number) {
   object.position.set(0, 0, 0);
   object.scale.setScalar(1);
   object.rotation.set(...pose);
   const bounds = new THREE.Box3().setFromObject(object, true);
   const size = bounds.getSize(new THREE.Vector3());
-  const scale = Math.min(w / size.x, h / size.y);
+  const scale = Math.min(w / size.x, h / size.y) * k;
   object.scale.setScalar(scale);
   object.position.copy(bounds.getCenter(new THREE.Vector3()).multiplyScalar(-scale));
   return object;
@@ -113,12 +115,12 @@ export async function mountHeroScene({ host, frame, models, trigger, motion }: O
   // A swapping slot also holds its partner's model (a clone: geometry + textures shared), fitted to this slot's box.
   const partners = models.map((_, i) => (motion ? partnerOf(models, i) : -1));
   const clones = partners.map((j) => (j < 0 ? null : sources[j].clone()));
-  const rigs = models.map(({ x, y, w, h, pose }, i) => {
-    const object = fitInto(sources[i], pose, w, h);
+  const rigs = models.map(({ x, y, w, h, ...model }, i) => {
+    const object = fitInto(sources[i], model, w, h);
     const morph = new THREE.Group().add(object);
     const clone = clones[i];
     const variants =
-      clone && ([makeVariant(object), makeVariant(fitInto(clone, models[partners[i]].pose, w, h))] as SwapSlot["variants"]);
+      clone && ([makeVariant(object), makeVariant(fitInto(clone, models[partners[i]], w, h))] as SwapSlot["variants"]);
     if (variants) morph.add(variants[1].root);
 
     const float = new THREE.Group().add(morph);

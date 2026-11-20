@@ -9,6 +9,9 @@ import type { HeroModel } from "@/lib/three/hero-scene";
 
 type Frame = { width: number; height: number };
 
+/** `box` scaled by `k` about its centre. */
+const scaleBox = ({ x, y, w, h }: Box, k = 1): Box => ({ x: x + (w * (1 - k)) / 2, y: y + (h * (1 - k)) / 2, w: w * k, h: h * k });
+
 export type HeroObject = Omit<HeroModel, keyof Box> & {
   src: string;
   /** Per layout: `poster` = Figma export box (shown until 3D is ready), `fit` = visible bounds the model fills. */
@@ -38,8 +41,8 @@ function HeroScene({ layout, objects, frame, triggerId }: Omit<Props, "frames"> 
   return (
     <>
       <div className={cn("transition-opacity duration-700", ready && "opacity-0")} aria-hidden>
-        {objects.map(({ src, desktop, mobile }) => (
-          <PositionedImage key={src} src={src} {...desktop.poster} mobile={mobile.poster} priority />
+        {objects.map(({ src, desktop, mobile, size }) => (
+          <PositionedImage key={src} src={src} {...scaleBox(desktop.poster, size)} mobile={scaleBox(mobile.poster, size)} priority />
         ))}
       </div>
       <div

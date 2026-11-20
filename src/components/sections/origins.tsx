@@ -22,7 +22,11 @@ export function Origins() {
   const { section, arch, stage, frame, photoWindow, photo, copy, cta } = useArchReveal();
 
   return (
-    <Section ref={section} className="overflow-x-clip bg-cream md:min-h-0!">
+    // Top padding: Figma's 79px gap from the coffee gradient (On the horizon used to sit between).
+    <Section
+      ref={section}
+      className="overflow-x-clip bg-cream pt-[calc(79.29px*var(--zoom))] md:min-h-0! max-md:pt-[calc(48px*var(--zoom))]"
+    >
       {/* Heading and arch form one block (arch bottom 98.7px above the contact collage, which the
           contact section's top padding provides). The arch sits 77px higher than Figma (275.42 vs
           352.42), so the pinned block fits the screen with room above the heading. */}

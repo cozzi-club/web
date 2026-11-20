@@ -10,6 +10,7 @@ export const banterGrotesk = localFont({
 export const ttNeoris = localFont({
   src: [
     { path: "./tt-neoris-hairline.woff2", weight: "100", style: "normal" },
+    { path: "./tt-neoris-hairline-italic.woff2", weight: "100", style: "italic" },
     { path: "./tt-neoris-regular.woff2", weight: "400", style: "normal" },
     { path: "./tt-neoris-medium.woff2", weight: "500", style: "normal" },
     { path: "./tt-neoris-demibold.woff2", weight: "600", style: "normal" },

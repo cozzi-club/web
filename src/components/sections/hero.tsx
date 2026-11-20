@@ -25,6 +25,8 @@ const objects: HeroObject[] = [
     src: "/images/hero/mask.png",
     model: MODELS.mask,
     swapWith: MODELS.stool,
+    // 10% smaller than its Figma box (2026-11-20), wherever it sits after a swap.
+    size: 0.9,
     pose: [0.1, 0.35, -0.18],
     drift: 120,
     desktop: { poster: { x: 163.7, y: 106.68, w: 183.53, h: 223.13 }, fit: { x: 206.6, y: 143.1, w: 106.7, h: 150.3 } },
@@ -69,8 +71,9 @@ export function Hero({ banner, nextId }: { banner?: ReactNode; nextId: string })
       <div className="relative flex flex-1 flex-col justify-center">
         <SiteHeader />
 
-        {/* `data-preloader-zoom`: settles from a slight zoom as the preloader's doors open. */}
-        <Container data-preloader-zoom className="h-[768px] max-md:h-[730px]">
+        {/* `data-preloader-zoom`: settles from a slight zoom as the preloader's doors open. 10px above
+            Figma (headline and objects together, 2026-11-20). */}
+        <Container data-preloader-zoom className="-top-[10px] h-[768px] max-md:h-[730px]">
           <Heading
             as="h1"
             size="xl"
