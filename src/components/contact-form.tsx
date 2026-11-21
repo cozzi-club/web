@@ -4,7 +4,7 @@ import { CircleCheck } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Field } from "@/components/ui/field";
 
-/** Enquiry form (Figma "Enquire - form"). Once sent it clears, and a thank-you line shows under the button. */
+/** Inquiry form (Figma "Enquire - form"). Once sent it clears, and a thank-you line shows under the button. */
 export function ContactForm() {
   const [sent, setSent] = useState(false);
 

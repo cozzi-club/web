@@ -1,10 +1,10 @@
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/cn";
 
-// Figma form fields: 11px label, 10px gap, 46px filled box (r2). light = waitlist glass, dark = enquiry page.
+// Figma form fields: 11px label, 10px gap, 46px filled box (r2). light = waitlist glass, dark = inquiry page.
 const tones = {
   light: { label: "text-[#252525]", control: "bg-[#afaeae]/50 text-[#252525] placeholder:text-[#252525] focus-visible:ring-[#141414]" },
-  // Enquiry labels sit in 7px-tall boxes in Figma (the glyphs overflow), so the field stack matches its height.
+  // Inquiry labels sit in 7px-tall boxes in Figma (the glyphs overflow), so the field stack matches its height.
   dark: { label: "text-[#dabeb5] leading-[7px]!", control: "bg-[#61463c] text-[#dabeb5] placeholder:text-[#dabeb5]/80 focus-visible:ring-[#dabeb5]" },
 };
 

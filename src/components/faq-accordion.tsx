@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import type { Faq } from "@/content/faq";
+import type { Faq, FaqBlock } from "@/content/faq";
 import { cn } from "@/lib/cn";
 
 /** Plus that turns into a (rust) minus when open — Figma: 9px, 2px stroke. */
@@ -22,6 +22,25 @@ function ToggleIcon({ open }: { open: boolean }) {
         className={cn("origin-center transition-transform duration-300", open && "scale-y-0")}
       />
     </svg>
+  );
+}
+
+/** Answer copy (Figma: 12px, 75% ink), wrapping at the design width at most. Blocks are paragraphs or bulleted lists, a line apart. */
+function Answer({ blocks }: { blocks: FaqBlock[] }) {
+  return (
+    <div className="flex max-w-[334px] flex-col gap-[12px] pt-[23px] font-sans text-[12px] leading-[12px] font-medium tracking-[-0.03em] text-ink/75 max-md:max-w-[291px] max-md:gap-[15px] max-md:pt-[27.9px] max-md:pb-[3.45px] max-md:text-[17px] max-md:leading-[15px]">
+      {blocks.map((block, i) =>
+        typeof block === "string" ? (
+          <p key={i}>{block}</p>
+        ) : (
+          <ul key={i} className="flex list-disc flex-col gap-[4px] pl-[1.2em]">
+            {block.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ),
+      )}
+    </div>
   );
 }
 
@@ -56,9 +75,7 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
               )}
             >
               <div className="overflow-hidden">
-                <p className="w-[334px] pt-[23px] font-sans text-[12px] leading-[12px] font-medium tracking-[-0.03em] text-ink/75 max-md:w-[291px] max-md:pt-[27.9px] max-md:pb-[3.45px] max-md:text-[17px] max-md:leading-[15px]">
-                  {answer}
-                </p>
+                <Answer blocks={answer} />
               </div>
             </div>
           </li>

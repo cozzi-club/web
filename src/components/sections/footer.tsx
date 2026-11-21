@@ -11,8 +11,10 @@ const rule = "border-t-2 border-sand/50 max-md:border-t-[1.5px]";
 const ruleBelow = "border-b-2 border-sand/50 max-md:border-b-[1.5px]";
 
 function FooterAnchor({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
+  // Other sites (the socials) open in a new tab.
+  const external = href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {};
   return (
-    <TransitionLink href={href} className={cn("transition-opacity hover:opacity-60", className)}>
+    <TransitionLink href={href} {...external} className={cn("transition-opacity hover:opacity-60", className)}>
       {children}
     </TransitionLink>
   );
@@ -67,10 +69,11 @@ export function Footer() {
             links={sitemap}
             listClassName="flex flex-col gap-3 max-md:text-[25px] max-md:leading-[23.8px] max-md:[-webkit-text-stroke-width:1px]"
           />
+          {/* Mobile: the email on its own line, the two numbers side by side below it. */}
           <FooterRow
             title="Contact"
             links={contact}
-            listClassName="flex flex-col gap-3 max-md:flex-row max-md:justify-between max-md:text-[17px] max-md:leading-[16px] max-md:[-webkit-text-stroke-width:0.65px]"
+            listClassName="flex flex-col gap-3 whitespace-nowrap max-md:flex-row max-md:flex-wrap max-md:justify-between max-md:text-[17px] max-md:leading-[16px] max-md:[-webkit-text-stroke-width:0.65px] max-md:[&>li:first-child]:basis-full"
           />
         </div>
 

@@ -8,7 +8,7 @@ import { faqs } from "@/content/faq";
 
 export const metadata: Metadata = {
   title: "FAQ | Cozzi",
-  description: "Frequently asked questions about COZZI coffee: origin, grind, bulk orders and more.",
+  description: "Frequently asked questions about COZZI: our mission, where our coffee comes from, roasting, brewing and the founder.",
 };
 
 const ALT = "A clay jebena on a stone plinth in a sunlit concrete room";

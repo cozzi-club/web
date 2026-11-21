@@ -11,13 +11,16 @@ export const sitemap: NavLink[] = [
 
 export const contact: NavLink[] = [
   { label: "cozziclub@gmail.com", href: "mailto:cozziclub@gmail.com" },
-  { label: "+91(123 456 78)", href: "tel:+9112345678" },
+  { label: "+61 403 942 298", href: "tel:+61403942298" },
+  { label: "+251 967 416 500", href: "tel:+251967416500" },
 ];
 
+/** All @cozziclub (Figma comment, 2026-11-08). */
 export const socials: NavLink[] = [
-  { label: "Instagram", href: "#" },
-  { label: "Linkedin", href: "#" },
-  { label: "X", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/cozziclub" },
+  { label: "YouTube", href: "https://www.youtube.com/@cozziclub" },
+  { label: "TikTok", href: "https://www.tiktok.com/@cozziclub" },
+  { label: "Substack", href: "https://cozziclub.substack.com" },
 ];
 
 /** Desktop header nav. `soon`: a button that opens the waitlist, with a "Coming Soon!" pill. */
