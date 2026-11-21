@@ -19,9 +19,9 @@ const images: Placement[] = [
   { src: "/images/philosophy/branch-4.png", x: 103.01, y: 346.34, w: 109.93, h: 120.51, mobile: null },
   { src: "/images/philosophy/pour-4.png", x: 980.4, y: 532.86, w: 153.42, h: 126.45, mobile: null },
   { src: "/images/philosophy/mesob-4.png", x: 277.39, y: 573.12, w: 128.49, h: 139.31, mobile: null },
-  // A video in Figma: the clip cropped to Figma's mask (406×432 of the 848×480 source, no audio);
-  // the Figma still is its poster.
-  { src: "/images/philosophy/film-still-4.png", video: "/video/buna.mp4", x: 837.47, y: 570.12, w: 121.01, h: 129.14, mobile: null },
+  // A video in Figma: the client's clip (720×720, 2026-11-21) cropped to the box (676×720, centred),
+  // no audio; its first frame is the poster.
+  { src: "/images/philosophy/buna-poster.jpg", video: "/video/buna-2.mp4", x: 837.47, y: 570.12, w: 121.01, h: 129.14, mobile: null },
   { src: "/images/philosophy/field-4.png", x: 428.76, y: 573.12, w: 92.12, h: 83.54, mobile: null },
 ];
 
