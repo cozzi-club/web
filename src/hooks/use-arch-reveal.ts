@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
-// Figma "Group 2480" (design px): espresso arch with the photo masked 5.40 / 6.51px inside it.
+// Figma "Group 2480" (design px): black arch (Figma: espresso) with the photo masked 5.40 / 6.51px inside it.
 export const ARCH = { w: 241.79, h: 291.83, insetX: 5.4, insetY: 6.51 };
 // Horizontal focal point of the jebena photo (the vase), used for the arch crop.
 export const ARCH_FOCUS_X = 0.92;
@@ -15,10 +15,10 @@ const FULL = inset(0, 0, 0, 0, 0);
 /**
  * Scroll-scrubbed arch ("the door") → full-screen jebena → "Inside story, if you will" (md+, motion
  * allowed). The original version, as requested in Figma:
- * 1. Two clip-paths open from the arch's shape to the viewport — the espresso frame, then the
+ * 1. Two clip-paths open from the arch's shape to the viewport — the black frame, then the
  *    photo window inside it — while the photo scales from the arch crop (fit to height, framed on
- *    the vase) to covering the screen. Starts as soon as the arch peeks in (its top at the
- *    viewport bottom) and finishes with the section pinned.
+ *    the vase) to covering the screen. Starts only once the whole section is in view (pinned) and
+ *    runs entirely within the pin.
  * 2. The copy rises in word by word (`[data-word]` spans inside overflow masks), then the button.
  * The section is shorter than the screen (Figma spacing), so it pins centred, like the original
  * full-screen version, instead of with the heading jammed under the nav; the stage is moved up by
@@ -84,7 +84,7 @@ export function useArchReveal() {
         const pin = ScrollTrigger.create({
           trigger: section.current,
           start: () => `top ${offset()}px`,
-          end: "+=220%",
+          end: "+=300%",
           pin: true,
           invalidateOnRefresh: true,
         });
@@ -93,8 +93,8 @@ export function useArchReveal() {
           .timeline({
             defaults: { ease: "power1.inOut" },
             scrollTrigger: {
-              trigger: arch.current,
-              start: "top bottom",
+              trigger: section.current,
+              start: () => pin.start,
               end: () => pin.end,
               scrub: true,
               invalidateOnRefresh: true,
@@ -104,7 +104,7 @@ export function useArchReveal() {
               },
             },
           })
-          // Durations are roughly "screens of scroll": ~0.8 before the pin + 2.2 pinned.
+          // Durations are roughly "screens of scroll", all of it pinned (3 screens).
           .fromTo(frame.current, { clipPath: () => geometry.frame }, { clipPath: FULL, duration: 1.9 }, 0)
           .fromTo(photoWindow.current, { clipPath: () => geometry.window }, { clipPath: FULL, duration: 1.9 }, 0)
           .fromTo(

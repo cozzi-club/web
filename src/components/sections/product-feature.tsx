@@ -5,7 +5,7 @@ import { SizedImage } from "@/components/ui/sized-image";
 import { Heading, Text } from "@/components/ui/typography";
 import { UnblurWords } from "@/components/ui/unblur-words";
 
-/** Coffee feature (Figma 2026-11-20): "Reserve" over the bag, copy + "Learn more"; md+ at least 110% of the screen tall. */
+/** Coffee feature (Figma 2026-11-20): "Reserve" over the bag, copy + "Find out"; md+ at least 110% of the screen tall. */
 export function ProductFeature({ id }: { id: string }) {
   return (
     // overflow-x-clip: the mobile bag (Figma 396px + 3px offset) bleeds past the 390px frame.
@@ -25,9 +25,8 @@ export function ProductFeature({ id }: { id: string }) {
 
         <div className="mt-[33.63px] flex items-start justify-between max-md:mt-[47px] max-md:flex-col">
           {/* Figma: two lines (26.5px apart), top-aligned with the button; a thin stroke thickens the
-              hairline weight. Italic as Figma renders it (its data says upright, but the italic file
-              shares the upright one's style name, so Figma draws it slanted). */}
-          <Text className="w-[480px] italic [-webkit-text-stroke:0.5px_currentColor] max-md:ml-[69px] max-md:w-[266px] max-md:text-center max-md:text-[10.6px] max-md:leading-[14px] max-md:[-webkit-text-stroke:0.35px_var(--color-bone)]">
+              hairline weight. */}
+          <Text className="w-[480px] [-webkit-text-stroke:0.5px_currentColor] max-md:ml-[69px] max-md:w-[266px] max-md:text-center max-md:text-[10.6px] max-md:leading-[14px] max-md:[-webkit-text-stroke:0.35px_var(--color-bone)]">
             <span className="block">Single-origin coffee from Jimma, Ethiopia.</span>
             <span className="block md:mt-[4.9px]">Medium roast, a softer &amp; fuller expression of the bean.</span>
           </Text>
@@ -36,7 +35,7 @@ export function ProductFeature({ id }: { id: string }) {
             tone="parchment"
             className="max-md:mt-[83px] max-md:ml-[102px] max-md:min-w-[185px] max-md:px-[28.8px] max-md:text-[11.5px]"
           >
-            Learn more
+            Find out
           </ButtonLink>
         </div>
       </Container>

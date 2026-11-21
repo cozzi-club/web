@@ -34,11 +34,11 @@ export function Origins() {
         <Heading className="absolute inset-x-0 top-0 text-center text-ink max-md:top-[10px] max-md:text-[35px] max-md:leading-[30px]">
           <UnblurWords text={"The\ndoor into\nthe club"} />
         </Heading>
-        {/* Figma arch (241.79×291.83, espresso, photo masked 5.4 / 6.51 inside), drawn in CSS so the
+        {/* Figma arch (241.79×291.83, black frame, photo masked 5.4 / 6.51 inside), drawn in CSS so the
             jebena can be framed on the vase — the reveal starts from exactly this crop. */}
         <div
           ref={arch}
-          className="absolute top-[275.42px] left-[519.1px] h-[291.83px] w-[241.79px] rounded-t-full bg-espresso max-md:top-[221px] max-md:left-[132px] max-md:h-[152px] max-md:w-[126px]"
+          className="absolute top-[275.42px] left-[519.1px] h-[291.83px] w-[241.79px] rounded-t-full bg-ink max-md:top-[221px] max-md:left-[132px] max-md:h-[152px] max-md:w-[126px]"
         >
           <div className="absolute inset-x-[2.233%] inset-y-[2.231%] overflow-hidden rounded-t-full">
             <Image
@@ -61,7 +61,7 @@ export function Origins() {
         ref={stage}
         className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100svh+2px)] max-md:hidden"
       >
-        <div ref={frame} aria-hidden className="absolute inset-0 bg-espresso">
+        <div ref={frame} aria-hidden className="absolute inset-0 bg-ink">
           <div ref={photoWindow} className="absolute inset-0 overflow-hidden">
             <div ref={photo} className="absolute top-1/2 left-1/2 aspect-[3907/2544] w-[max(100%,calc((100svh+2px)*3907/2544))]">
               <Image src={JEBENA} alt="" fill sizes="100vw" />
