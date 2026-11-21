@@ -10,8 +10,8 @@ export function ProductFeature({ id }: { id: string }) {
   return (
     // overflow-x-clip: the mobile bag (Figma 396px + 3px offset) bleeds past the 390px frame.
     <Section id={id} className="noise overflow-x-clip md:min-h-[110svh]! bg-[linear-gradient(to_bottom,#452a20_0%,#583629_21%,#6d4233_40%,#7d533e_56%,#8c634a_71%,#ae8864_89%,#d5b181_100%)] text-parchment">
-      <Container className="h-[812.03px] pt-[198.89px] pr-[105px] pl-[91px] max-md:h-[642px] max-md:pt-[126px] max-md:pr-0 max-md:pl-0">
-        <Heading size="lg" className="absolute inset-x-0 top-[109.92px] text-center text-parchment max-md:hidden">
+      <Container className="h-[calc(812.03*var(--u))] pt-[calc(198.89*var(--u))] pr-[calc(105*var(--u))] pl-[calc(91*var(--u))] max-md:h-[calc(642*var(--u))] max-md:pt-[calc(126*var(--u))] max-md:pr-0 max-md:pl-0">
+        <Heading size="lg" className="absolute inset-x-0 top-[calc(109.92*var(--u))] text-center text-parchment max-md:hidden">
           <UnblurWords text="Reserve" />
         </Heading>
         <SizedImage
@@ -20,20 +20,20 @@ export function ProductFeature({ id }: { id: string }) {
           w={625.97}
           h={417.37}
           mobile={{ w: 396, h: 264 }}
-          className="ml-[238px] max-md:ml-[3px]"
+          className="ml-[calc(238*var(--u))] max-md:ml-[calc(3*var(--u))]"
         />
 
-        <div className="mt-[33.63px] flex items-start justify-between max-md:mt-[47px] max-md:flex-col">
+        <div className="mt-[calc(33.63*var(--u))] flex items-start justify-between max-md:mt-[calc(47*var(--u))] max-md:flex-col">
           {/* Figma: two lines (26.5px apart), top-aligned with the button; a thin stroke thickens the
               hairline weight. */}
-          <Text className="w-[480px] [-webkit-text-stroke:0.5px_currentColor] max-md:ml-[69px] max-md:w-[266px] max-md:text-center max-md:text-[10.6px] max-md:leading-[14px] max-md:[-webkit-text-stroke:0.35px_var(--color-bone)]">
+          <Text className="w-[calc(480*var(--u))] [-webkit-text-stroke:calc(0.5*var(--u))_currentColor] max-md:ml-[calc(69*var(--u))] max-md:w-[calc(266*var(--u))] max-md:text-center max-md:text-[calc(10.6*var(--u))] max-md:leading-[calc(14*var(--u))] max-md:[-webkit-text-stroke:calc(0.35*var(--u))_var(--color-bone)]">
             <span className="block">Single-origin coffee from Jimma, Ethiopia.</span>
-            <span className="block md:mt-[4px]">Medium roast, a softer &amp; fuller expression of the bean.</span>
+            <span className="block md:mt-[calc(4*var(--u))]">Medium roast, a softer &amp; fuller expression of the bean.</span>
           </Text>
           <ButtonLink
             href="/coffee"
             tone="parchment"
-            className="max-md:mt-[83px] max-md:ml-[102px] max-md:min-w-[185px] max-md:px-[28.8px] max-md:text-[11.5px]"
+            className="max-md:mt-[calc(83*var(--u))] max-md:ml-[calc(102*var(--u))] max-md:min-w-[calc(185*var(--u))] max-md:px-[calc(28.8*var(--u))] max-md:text-[calc(11.5*var(--u))]"
           >
             Find out
           </ButtonLink>

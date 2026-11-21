@@ -12,7 +12,7 @@ function ToggleIcon({ open }: { open: boolean }) {
       height="9"
       viewBox="0 0 9 9"
       aria-hidden
-      className={cn("shrink-0 transition-colors max-md:size-[6.1px] duration-300", open ? "text-[#6c331b]" : "text-ink")}
+      className={cn("size-[calc(9*var(--u))] shrink-0 transition-colors max-md:size-[calc(6.1*var(--u))] duration-300", open ? "text-[#6c331b]" : "text-ink")}
     >
       <path d="M0 4.5h9" stroke="currentColor" strokeWidth="2" />
       <path
@@ -28,12 +28,12 @@ function ToggleIcon({ open }: { open: boolean }) {
 /** Answer copy (Figma: 12px, 75% ink), wrapping at the design width at most. Blocks are paragraphs or bulleted lists, a line apart. */
 function Answer({ blocks }: { blocks: FaqBlock[] }) {
   return (
-    <div className="flex max-w-[334px] flex-col gap-[12px] pt-[23px] font-sans text-[12px] leading-[12px] font-medium tracking-[-0.03em] text-ink/75 max-md:max-w-[291px] max-md:gap-[15px] max-md:pt-[27.9px] max-md:pb-[3.45px] max-md:text-[17px] max-md:leading-[15px]">
+    <div className="flex max-w-[calc(334*var(--u))] flex-col gap-[calc(12*var(--u))] pt-[calc(23*var(--u))] font-sans text-[calc(12*var(--u))] leading-[calc(12*var(--u))] font-medium tracking-[-0.03em] text-ink/75 max-md:max-w-[calc(291*var(--u))] max-md:gap-[calc(15*var(--u))] max-md:pt-[calc(27.9*var(--u))] max-md:pb-[calc(3.45*var(--u))] max-md:text-[calc(17*var(--u))] max-md:leading-[calc(15*var(--u))]">
       {blocks.map((block, i) =>
         typeof block === "string" ? (
           <p key={i}>{block}</p>
         ) : (
-          <ul key={i} className="flex list-disc flex-col gap-[4px] pl-[1.2em]">
+          <ul key={i} className="flex list-disc flex-col gap-[calc(4*var(--u))] pl-[1.2em]">
             {block.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -50,18 +50,18 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
   const id = useId();
 
   return (
-    <ul className="flex flex-col gap-[28px] max-md:gap-[14.7px]">
+    <ul className="flex flex-col gap-[calc(28*var(--u))] max-md:gap-[calc(14.7*var(--u))]">
       {items.map(({ question, answer }, index) => {
         const expanded = open === index;
         const panel = `${id}-${index}`;
         return (
-          <li key={question} className="border-b border-ink pb-[31px] max-md:pb-[16.75px]">
+          <li key={question} className="border-b border-ink pb-[calc(31*var(--u))] max-md:pb-[calc(16.75*var(--u))]">
             <button
               type="button"
               aria-expanded={expanded}
               aria-controls={panel}
               onClick={() => setOpen(expanded ? -1 : index)}
-              className="flex w-full cursor-pointer items-center justify-between gap-6 text-left font-sans text-[13px] leading-[14px] font-medium tracking-[-0.03em] text-ink max-md:text-[17px] max-md:leading-[17px]"
+              className="flex w-full cursor-pointer items-center justify-between gap-6 text-left font-sans text-[calc(13*var(--u))] leading-[calc(14*var(--u))] font-medium tracking-[-0.03em] text-ink max-md:text-[calc(17*var(--u))] max-md:leading-[calc(17*var(--u))]"
             >
               {question}
               <ToggleIcon open={expanded} />

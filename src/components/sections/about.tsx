@@ -6,6 +6,7 @@ import { CircleArrow } from "@/components/ui/circle-arrow";
 import { Container } from "@/components/ui/container";
 import { Heading } from "@/components/ui/typography";
 import { cn } from "@/lib/cn";
+import { u } from "@/lib/design";
 
 // Desktop track: the 1280×736 intro frame continued by the 5413px side-scroll frame (offset 822),
 // with a tighter intro than Figma: a narrower black panel (the still life is shown whole, at its
@@ -87,7 +88,7 @@ function CollageLayer({ src, x, y, w, h, stagger, zoom, className, attached = []
   return (
     <div
       className={cn("absolute", zoom !== undefined && "overflow-hidden")}
-      style={{ left, top, width: right - left, height: bottom - top }}
+      style={{ left: u(left), top: u(top), width: u(right - left), height: u(bottom - top) }}
       data-stagger={stagger}
       data-zoom={zoom}
     >
@@ -96,7 +97,7 @@ function CollageLayer({ src, x, y, w, h, stagger, zoom, className, attached = []
           <div
             key={piece.src}
             className={cn("absolute", piece.className)}
-            style={{ left: piece.x - left, top: piece.y - top, width: piece.w, height: piece.h }}
+            style={{ left: u(piece.x - left), top: u(piece.y - top), width: u(piece.w), height: u(piece.h) }}
           >
             <Image src={piece.src} alt="" fill sizes={sizes(piece.w)} className="object-cover" />
           </div>
@@ -106,22 +107,22 @@ function CollageLayer({ src, x, y, w, h, stagger, zoom, className, attached = []
   );
 }
 
-/** Absolute box for a block that is itself zoomed (CSS zoom would also scale its own left/top). */
+/** Absolute box for a block that sets its own smaller --u (which would also scale its own left/top). */
 function Place({ x, y, children }: { x: number; y: number; children: ReactNode }) {
   return (
-    <div className="absolute" style={{ left: x, top: y }}>
+    <div className="absolute" style={{ left: u(x), top: u(y) }}>
       {children}
     </div>
   );
 }
 
 function Rect({ x, y, w, h, className }: Omit<Layer, "src"> & { className: string }) {
-  return <div className={cn("absolute", className)} style={{ left: x, top: y, width: w, height: h }} />;
+  return <div className={cn("absolute", className)} style={{ left: u(x), top: u(y), width: u(w), height: u(h) }} />;
 }
 
 function Headline({ className }: { className?: string }) {
   return (
-    <Heading as="h2" className={cn("w-[400px] text-[89.2px]! leading-[85.4px]! text-sand", className)}>
+    <Heading as="h2" className={cn("w-[calc(400*var(--u))] text-[calc(89.2*var(--u))]! leading-[calc(85.4*var(--u))]! text-sand", className)}>
       <span className="block text-right">Whole</span>
       <span className="block">Lot</span>
       <span className="block text-right">More</span>
@@ -187,8 +188,8 @@ function AboutTrack() {
       ))}
 
       {/* intro panel */}
-      <Headline className="absolute top-[146px] left-[108px]" />
-      <p className="absolute top-[502px] left-[116px] w-[391px] text-justify font-sans text-[20px] leading-[21.6px] font-medium tracking-[-0.02em] text-bone">
+      <Headline className="absolute top-[calc(146*var(--u))] left-[calc(108*var(--u))]" />
+      <p className="absolute top-[calc(502*var(--u))] left-[calc(116*var(--u))] w-[calc(391*var(--u))] text-justify font-sans text-[calc(20*var(--u))] leading-[calc(21.6*var(--u))] font-medium tracking-[-0.02em] text-bone">
         Built on our vision of things. What we choose, what we leave out, and what we believe is worth doing right. This
         is where that thinking begins.
       </p>
@@ -196,7 +197,7 @@ function AboutTrack() {
         type="button"
         data-scroll-to={fig(3023)}
         aria-label="Read our story"
-        className="absolute top-[646px] left-[294px] cursor-pointer text-mocha"
+        className="absolute top-[calc(646*var(--u))] left-[calc(294*var(--u))] cursor-pointer text-mocha"
       >
         <CircleArrow />
       </button>
@@ -207,8 +208,8 @@ function AboutTrack() {
         title={stories.story.title}
         gap={36}
         next={fig(4195)}
-        className="absolute w-[422px]"
-        style={{ left: fig(2812), top: 176 }}
+        className="absolute w-[calc(422*var(--u))]"
+        style={{ left: u(fig(2812)), top: u(176) }}
       >
         {stories.story.body}
       </StoryBlock>
@@ -216,8 +217,8 @@ function AboutTrack() {
         label={stories.origin.label}
         title={stories.origin.title}
         gap={33}
-        className="absolute w-[365px]"
-        style={{ left: fig(4013), top: 176 }}
+        className="absolute w-[calc(365*var(--u))]"
+        style={{ left: u(fig(4013)), top: u(176) }}
       >
         {stories.origin.body}
       </StoryBlock>
@@ -225,8 +226,8 @@ function AboutTrack() {
         type="button"
         data-scroll-to={fig(5324)}
         aria-label="Next story"
-        className="absolute top-[178px] cursor-pointer text-espresso"
-        style={{ left: fig(4587) }}
+        className="absolute top-[calc(178*var(--u))] cursor-pointer text-espresso"
+        style={{ left: u(fig(4587)) }}
       >
         <CircleArrow />
       </button>
@@ -234,9 +235,9 @@ function AboutTrack() {
         label={stories.ethical.label}
         title={stories.ethical.title}
         gap={37}
-        titleClassName="text-[55px]! leading-[55px]!"
-        className="absolute w-[509px]"
-        style={{ left: fig(5070), top: 176 }}
+        titleClassName="text-[calc(55*var(--u))]! leading-[calc(55*var(--u))]!"
+        className="absolute w-[calc(509*var(--u))]"
+        style={{ left: u(fig(5070)), top: u(176) }}
       >
         {stories.ethical.body}
       </StoryBlock>
@@ -244,11 +245,11 @@ function AboutTrack() {
   );
 }
 
-/** Mobile: the same story stacked vertically (Figma "mob" frame). Blocks are the desktop ones, zoomed. */
+/** Mobile: the same story stacked vertically (Figma "mob" frame). Blocks are the desktop ones, shrunk (local --u). */
 function AboutStack() {
   return (
     <div className="overflow-hidden bg-cream md:hidden">
-      <Container style={{ height: MOBILE.height }}>
+      <Container style={{ height: u(MOBILE.height) }}>
         <Rect x={0} y={0} w={390} h={449} className="bg-ink" />
         {mobileLayers.map((layer) => (
           <CollageLayer key={layer.src} {...layer} sizes={vw} />
@@ -259,14 +260,14 @@ function AboutStack() {
         ))}
 
         <Place x={55} y={136}>
-          <Headline className="zoom-[0.7]" />
+          <Headline className="text-body [--u:calc(var(--u0)*0.7)]" />
         </Place>
         <Place x={52} y={1239}>
           <StoryBlock
             label={stories.story.label}
             title={stories.story.title}
             gap={36}
-            className="w-[422px] zoom-[0.687]"
+            className="w-[calc(422*var(--u))] text-body [--u:calc(var(--u0)*0.687)]"
           >
             {stories.story.body}
           </StoryBlock>
@@ -276,7 +277,7 @@ function AboutStack() {
             label={stories.origin.label}
             title={stories.origin.title}
             gap={33}
-            className="w-[365px] zoom-[0.726]"
+            className="w-[calc(365*var(--u))] text-body [--u:calc(var(--u0)*0.726)]"
           >
             {stories.origin.body}
           </StoryBlock>
@@ -286,8 +287,8 @@ function AboutStack() {
             label={stories.ethical.label}
             title={stories.ethical.title}
             gap={37}
-            titleClassName="text-[55px]! leading-[55px]!"
-            className="w-[509px] zoom-[0.611]"
+            titleClassName="text-[calc(55*var(--u))]! leading-[calc(55*var(--u))]!"
+            className="w-[calc(509*var(--u))] text-body [--u:calc(var(--u0)*0.611)]"
           >
             {stories.ethical.body}
           </StoryBlock>

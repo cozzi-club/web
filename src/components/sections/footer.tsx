@@ -6,9 +6,9 @@ import { contact, sitemap, socials, type NavLink } from "@/content/navigation";
 import { cn } from "@/lib/cn";
 
 // Hairline weight thickened with a stroke; all of it parchment (links included), like the wordmark.
-const strokeText = "text-parchment [-webkit-text-stroke:0.75px_var(--color-parchment)]";
-const rule = "border-t-2 border-sand/50 max-md:border-t-[1.5px]";
-const ruleBelow = "border-b-2 border-sand/50 max-md:border-b-[1.5px]";
+const strokeText = "text-parchment [-webkit-text-stroke:calc(0.75*var(--u))_var(--color-parchment)]";
+const rule = "border-t-[calc(2*var(--u))] border-sand/50 max-md:border-t-[calc(1.5*var(--u))]";
+const ruleBelow = "border-b-[calc(2*var(--u))] border-sand/50 max-md:border-b-[calc(1.5*var(--u))]";
 
 function FooterAnchor({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
   // Other sites (the socials) open in a new tab.
@@ -37,12 +37,12 @@ function FooterRow({ title, links, listClassName }: { title: string; links: NavL
   return (
     <div
       className={cn(
-        "grid grid-cols-[700px_1fr] pt-[19.5px] pb-[22px] text-[20px] leading-[19px]",
+        "grid grid-cols-[calc(700*var(--u))_1fr] pt-[calc(19.5*var(--u))] pb-[calc(22*var(--u))] text-[calc(20*var(--u))] leading-[calc(19*var(--u))]",
         "max-md:grid-cols-1 max-md:gap-4 max-md:pt-4 max-md:pb-5",
         rule,
       )}
     >
-      <h2 className="max-md:text-[17px] max-md:leading-[16px] max-md:opacity-75">{title}</h2>
+      <h2 className="max-md:text-[calc(17*var(--u))] max-md:leading-[calc(16*var(--u))] max-md:opacity-75">{title}</h2>
       <LinkList links={links} className={listClassName} />
     </div>
   );
@@ -55,31 +55,31 @@ export function Footer() {
           rows, the wordmark and the bottom row (Figma: ~34px each at its natural height). */}
       <Container
         className={cn(
-          "flex min-h-[calc(80svh/var(--zoom))] flex-col justify-between px-[38.5px] pt-[19px] pb-5 max-md:min-h-0 max-md:px-[27px] max-md:pt-[29px] max-md:pb-[25px]",
+          "flex min-h-[80svh] flex-col justify-between px-[calc(38.5*var(--u))] pt-[calc(19*var(--u))] pb-5 max-md:min-h-0 max-md:px-[calc(27*var(--u))] max-md:pt-[calc(29*var(--u))] max-md:pb-[calc(25*var(--u))]",
           strokeText,
         )}
       >
         <div className={ruleBelow}>
           <LinkList
             links={socials}
-            className="mb-5 flex gap-8 text-[13px] leading-[12.3px] opacity-80 [-webkit-text-stroke-width:0.47px] md:hidden"
+            className="mb-5 flex gap-8 text-[calc(13*var(--u))] leading-[calc(12.3*var(--u))] opacity-80 [-webkit-text-stroke-width:calc(0.47*var(--u))] md:hidden"
           />
           <FooterRow
             title="Sitemap"
             links={sitemap}
-            listClassName="flex flex-col gap-3 max-md:text-[25px] max-md:leading-[23.8px] max-md:[-webkit-text-stroke-width:1px]"
+            listClassName="flex flex-col gap-3 max-md:text-[calc(25*var(--u))] max-md:leading-[calc(23.8*var(--u))] max-md:[-webkit-text-stroke-width:calc(1*var(--u))]"
           />
           {/* Mobile: the email on its own line, the two numbers side by side below it. */}
           <FooterRow
             title="Contact"
             links={contact}
-            listClassName="flex flex-col gap-3 whitespace-nowrap max-md:flex-row max-md:flex-wrap max-md:justify-between max-md:text-[17px] max-md:leading-[16px] max-md:[-webkit-text-stroke-width:0.65px] max-md:[&>li:first-child]:basis-full"
+            listClassName="flex flex-col gap-3 whitespace-nowrap max-md:flex-row max-md:flex-wrap max-md:justify-between max-md:text-[calc(17*var(--u))] max-md:leading-[calc(16*var(--u))] max-md:[-webkit-text-stroke-width:calc(0.65*var(--u))] max-md:[&>li:first-child]:basis-full"
           />
         </div>
 
-        <Wordmark className="mt-[33.86px] w-[1200.97px] max-w-full text-parchment max-md:mt-[25px] max-md:w-[337px]" />
+        <Wordmark className="mt-[calc(33.86*var(--u))] w-[calc(1200.97*var(--u))] max-w-full text-parchment max-md:mt-[calc(25*var(--u))] max-md:w-[calc(337*var(--u))]" />
 
-        <div className="mt-[33.72px] flex justify-between pr-1.5 text-[15px] leading-[14.2px] [-webkit-text-stroke-width:0.5px] max-md:mt-[21px] max-md:pr-0 max-md:text-[13px] max-md:opacity-80">
+        <div className="mt-[calc(33.72*var(--u))] flex justify-between pr-1.5 text-[calc(15*var(--u))] leading-[calc(14.2*var(--u))] [-webkit-text-stroke-width:calc(0.5*var(--u))] max-md:mt-[calc(21*var(--u))] max-md:pr-0 max-md:text-[calc(13*var(--u))] max-md:opacity-80">
           <LinkList links={socials} className="flex gap-16 max-md:hidden" />
           <p>© 2026 COZZI. Rights Reserved.</p>
         </div>

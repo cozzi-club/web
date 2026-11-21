@@ -40,35 +40,46 @@
   /* Body copy in Figma is TT Neoris Hairline */
   --font-weight-hairline: 100;
 
+}
+
+
+/*
+ * Sizes in design px (see --u below): resolved on each element (`inline`), so a local --u
+ * (the About side-scroll, shrunk mobile blocks) scales everything inside it.
+ */
+@theme inline {
+  /* Tailwind's spacing scale (gap-3, px-10, h-12…): 4 design px per step. */
+  --spacing: calc(4 * var(--u));
+
   /* Type scale (desktop values from Figma) */
-  --text-display-xl: 87px;
-  --text-display-xl--line-height: 83px;
+  --text-display-xl: calc(87 * var(--u));
+  --text-display-xl--line-height: calc(83 * var(--u));
   --text-display-xl--letter-spacing: -0.03em;
 
-  --text-display-lg: 60px;
-  --text-display-lg--line-height: 55px;
+  --text-display-lg: calc(60 * var(--u));
+  --text-display-lg--line-height: calc(55 * var(--u));
   --text-display-lg--letter-spacing: -0.03em;
 
-  --text-heading: 37px;
-  --text-heading--line-height: 37px;
+  --text-heading: calc(37 * var(--u));
+  --text-heading--line-height: calc(37 * var(--u));
   --text-heading--letter-spacing: -0.03em;
 
-  --text-lead: 32px;
+  --text-lead: calc(32 * var(--u));
   --text-lead--line-height: 0.95;
   --text-lead--letter-spacing: -0.02em;
 
-  --text-body: 18px;
+  --text-body: calc(18 * var(--u));
   --text-body--line-height: 1.2;
 
-  --text-label-lg: 18px;
-  --text-label-lg--line-height: 20.4px;
+  --text-label-lg: calc(18 * var(--u));
+  --text-label-lg--line-height: calc(20.4 * var(--u));
   --text-label-lg--letter-spacing: 0.1em;
 
-  --text-label: 16px;
-  --text-label--line-height: 24px;
+  --text-label: calc(16 * var(--u));
+  --text-label--line-height: calc(24 * var(--u));
   --text-label--letter-spacing: 0.1em;
 
-  --text-caption: 13px;
+  --text-caption: calc(13 * var(--u));
   --text-caption--line-height: 1.3;
 }
 
@@ -86,21 +97,26 @@
   }
 
   body {
-    @apply bg-background font-sans font-hairline text-body text-foreground;
+    @apply bg-background font-sans font-hairline text-foreground;
+    font-size: 18px;
+    line-height: 1.2;
   }
 }
 
 /*
- * Responsive scaling: compositions are built in design px (390px mobile frame below
- * md, 1280px desktop frame above) and scaled to the viewport with CSS zoom — the desktop
- * frame keeps growing up to a 1920px viewport (zoom 1.5). See src/lib/design.ts.
+ * Responsive scaling, no zoom: every size is written in design px as calc(N * var(--u)), where --u
+ * is one design px as a real CSS length. Desktop: the 1280px frame fills the screen up to 1920px
+ * (one design px = 1.5px at 1920); below md: the 390px mobile frame fills the screen. Pure CSS,
+ * resolved by the browser before first paint. A subtree can set its own --u (from --u0).
  */
 :root {
-  --zoom: 1;
-}
+  --u0: calc(min(100vw, 1920px) / 1280);
 
-@utility design-zoom {
-  zoom: var(--zoom);
+  @media (width < 48rem) {
+    --u0: calc(100vw / 390);
+  }
+
+  --u: var(--u0);
 }
 
 /*
@@ -110,13 +126,13 @@
  * bottoms line up — and the sticky offset equals the section's bottom padding, so that's also where
  * the next section begins.
  * Spacing is Figma's, in design px: set `--split-top` / `--split-bottom` on the section. The section
- * sits outside the zoomed frame, so its padding is multiplied by --zoom; the sticky copy is inside it.
+ * values are design-px lengths (calc(N * var(--u))).
  */
 @utility sticky-split {
   /* Figma height, not the full-screen minimum other sections use (unless --split-min sets one). */
   min-height: var(--split-min, 0) !important;
-  padding-top: calc(var(--split-top) * var(--zoom));
-  padding-bottom: calc(var(--split-bottom) * var(--zoom));
+  padding-top: var(--split-top);
+  padding-bottom: var(--split-bottom);
 }
 
 @utility sticky-bottom {
@@ -159,15 +175,10 @@
 }
 
 /* Intro unblur (useIntroUnblur): words start hidden and blurred, so nothing flashes before hydration.
-   Visible as-is with reduced motion, and without JS (<noscript> rule in the root layout). */
+   Visible as-is with reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
   [data-intro-unblur] [data-word] {
     opacity: 0;
     filter: blur(12px);
   }
-}
-
-/* Preloader (usePreloader): already played this visit (head script) → never paint it. */
-[data-preloaded] .preloader {
-  display: none;
 }

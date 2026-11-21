@@ -2,9 +2,10 @@
 
 import { useRef, type ComponentProps } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { designPx } from "@/lib/design";
 
 type ParallaxProps = ComponentProps<"div"> & {
-  /** Pixels moved over the scroll range. Positive drifts up, negative drifts down. */
+  /** Design px moved over the scroll range. Positive drifts up, negative drifts down. */
   distance: number;
   /**
    * "center": rests at its design position mid-viewport (content further down the page).
@@ -23,12 +24,12 @@ export function Parallax({ distance, anchor = "center", ...props }: ParallaxProp
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const scrollTrigger = { trigger: ref.current, scrub: true, end: "bottom top" };
         if (anchor === "top") {
-          gsap.to(ref.current, { y: -distance, ease: "none", scrollTrigger: { ...scrollTrigger, start: "top top" } });
+          gsap.to(ref.current, { y: () => -designPx(distance), ease: "none", scrollTrigger: { ...scrollTrigger, start: "top top" } });
         } else {
           gsap.fromTo(
             ref.current,
-            { y: distance / 2 },
-            { y: -distance / 2, ease: "none", scrollTrigger: { ...scrollTrigger, start: "top bottom" } },
+            { y: () => designPx(distance / 2) },
+            { y: () => -designPx(distance / 2), ease: "none", scrollTrigger: { ...scrollTrigger, start: "top bottom" } },
           );
         }
       });

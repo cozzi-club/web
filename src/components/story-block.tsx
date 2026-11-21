@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { CircleArrow } from "@/components/ui/circle-arrow";
 import { Heading } from "@/components/ui/typography";
 import { cn } from "@/lib/cn";
+import { u } from "@/lib/design";
 
 type Props = {
   label: string;
@@ -19,12 +20,12 @@ type Props = {
 /** About story column: small label, Banter title, muted justified body (+ optional next arrow). */
 export function StoryBlock({ label, title, children, next, gap, titleClassName, className, style }: Props) {
   return (
-    <article className={cn("flex flex-col items-center text-center text-ink", className)} style={{ ...style, gap }}>
-      <p className="font-sans text-[10.9px] leading-[14.8px] font-medium tracking-[0.1em] text-espresso uppercase">{label}</p>
-      <Heading size="lg" className={cn("leading-[57.2px]!", titleClassName)}>
+    <article className={cn("flex flex-col items-center text-center text-ink", className)} style={{ ...style, gap: u(gap) }}>
+      <p className="font-sans text-[calc(10.9*var(--u))] leading-[calc(14.8*var(--u))] font-medium tracking-[0.1em] text-espresso uppercase">{label}</p>
+      <Heading size="lg" className={cn("leading-[calc(57.2*var(--u))]!", titleClassName)}>
         {title}
       </Heading>
-      <p className="w-[329px] text-justify font-sans text-[18.5px] leading-[20px] font-medium tracking-[-0.02em] opacity-50">
+      <p className="w-[calc(329*var(--u))] text-justify font-sans text-[calc(18.5*var(--u))] leading-[calc(20*var(--u))] font-medium tracking-[-0.02em] opacity-50">
         {children}
       </p>
       {next !== undefined && (

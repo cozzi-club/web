@@ -23,14 +23,14 @@ const tones: Record<Tone, { outline: string; fill: string }> = {
 };
 
 const base =
-  "group relative inline-flex h-12 min-w-[210px] items-center justify-center rounded-[2.5px] border-[1.25px] px-10 " +
+  "group relative inline-flex h-12 min-w-[calc(210*var(--u))] items-center justify-center rounded-[calc(2.5*var(--u))] border-[calc(1.25*var(--u))] px-10 " +
   "font-sans text-label font-medium uppercase whitespace-nowrap " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current";
+  "focus-visible:outline-[calc(2*var(--u))] focus-visible:outline-offset-2 focus-visible:outline-current";
 
 // Filled copy of the button (covers the border), revealed left → right with clip-path,
 // so the label colour flips exactly at the wipe edge.
 const fillLayer =
-  "absolute inset-[-1.25px] flex items-center justify-center rounded-[inherit] " +
+  "absolute inset-[calc(-1.25*var(--u))] flex items-center justify-center rounded-[inherit] " +
   "[clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-350 ease-[cubic-bezier(0.65,0,0.35,1)] " +
   "group-hover:[clip-path:inset(0)] group-focus-visible:[clip-path:inset(0)] motion-reduce:transition-none";
 

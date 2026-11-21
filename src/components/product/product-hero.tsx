@@ -19,7 +19,7 @@ export function ProductHero({ product, nextId }: { product: CoffeeDetail; nextId
       <AnnouncementBar />
       <div className="relative flex flex-1 flex-col justify-center">
         <SiteHeader />
-        <Container className="h-[697px] max-md:h-[324px]">
+        <Container className="h-[calc(697*var(--u))] max-md:h-[calc(324*var(--u))]">
           <SizedImage
             src={product.hero}
             alt={product.name}
@@ -27,9 +27,9 @@ export function ProductHero({ product, nextId }: { product: CoffeeDetail; nextId
             h={359}
             mobile={{ w: 228.32, h: 152.23 }}
             priority
-            className="absolute! top-[169px] left-[370px] max-md:top-[71.78px] max-md:left-[79.84px]"
+            className="absolute! top-[calc(169*var(--u))] left-[calc(370*var(--u))] max-md:top-[calc(71.78*var(--u))] max-md:left-[calc(79.84*var(--u))]"
           />
-          <h1 className="absolute top-[570px] left-[136px] font-display text-[25px] leading-[25px] font-bold tracking-[-0.03em] uppercase max-md:top-[248.14px] max-md:left-0 max-md:w-full max-md:text-center max-md:text-[18px] max-md:leading-[18px]">
+          <h1 className="absolute top-[calc(570*var(--u))] left-[calc(136*var(--u))] font-display text-[calc(25*var(--u))] leading-[calc(25*var(--u))] font-bold tracking-[-0.03em] uppercase max-md:top-[calc(248.14*var(--u))] max-md:left-0 max-md:w-full max-md:text-center max-md:text-[calc(18*var(--u))] max-md:leading-[calc(18*var(--u))]">
             {product.title.map((line, index) => (
               <span key={line} className={cn("block", index > 0 && "text-cream/50")}>
                 {line}
@@ -39,7 +39,7 @@ export function ProductHero({ product, nextId }: { product: CoffeeDetail; nextId
           <a
             href={`#${nextId}`}
             aria-label="Product details"
-            className="absolute top-[576px] left-[1088px] transition-transform duration-300 hover:translate-y-1 max-md:hidden"
+            className="absolute top-[calc(576*var(--u))] left-[calc(1088*var(--u))] transition-transform duration-300 hover:translate-y-1 max-md:hidden"
           >
             <CircleArrow className="rotate-90" />
           </a>

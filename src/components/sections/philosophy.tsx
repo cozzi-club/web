@@ -35,10 +35,10 @@ export function Philosophy({ id }: { id: string }) {
 
   return (
     <Section ref={section} id={id} className="overflow-hidden bg-cream">
-      <Container className="h-[813.55px] max-md:h-[722px]">
+      <Container className="h-[calc(813.55*var(--u))] max-md:h-[calc(722*var(--u))]">
         <div ref={photos}>
           {images.map((image) => (
-            <PositionedImage key={image.src} {...image} className="overflow-hidden rounded-[2px]" />
+            <PositionedImage key={image.src} {...image} className="overflow-hidden rounded-[calc(2*var(--u))]" />
           ))}
         </div>
 
@@ -46,7 +46,7 @@ export function Philosophy({ id }: { id: string }) {
         <Heading
           ref={heading}
           size="md"
-          className="absolute inset-x-0 top-[356.84px] text-center text-[30px] leading-[28px] text-ink max-md:top-[310px] max-md:text-[20px] max-md:leading-[20px]"
+          className="absolute inset-x-0 top-[calc(356.84*var(--u))] text-center text-[calc(30*var(--u))] leading-[calc(28*var(--u))] text-ink max-md:top-[calc(310*var(--u))] max-md:text-[calc(20*var(--u))] max-md:leading-[calc(20*var(--u))]"
         >
           {words.map((word, i) => (
             <Fragment key={i}>

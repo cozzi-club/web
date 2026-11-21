@@ -6,7 +6,7 @@ import { usePreloader } from "@/hooks/use-preloader";
  * First-visit preloader (`usePreloader`): on ink, a thin gold arch line draws itself while
  * "Opening 0–100%" counts up near the bottom; then the text and arch blur out and the dark
  * screen splits down the middle and slides open like doors onto the site. Home page only, once per
- * visit; hidden before paint on repeat visits (`data-preloaded`).
+ * visit (tab session).
  */
 export function Preloader() {
   const { line, counter, label, left, right, show } = usePreloader();
@@ -33,7 +33,7 @@ export function Preloader() {
 
         <div
           ref={label}
-          className="absolute inset-x-0 top-[86%] text-center font-sans text-[calc(11px*var(--zoom))] leading-none font-normal tracking-[0.2em] text-sand uppercase tabular-nums max-md:text-[11px]"
+          className="absolute inset-x-0 top-[86%] text-center font-sans text-[calc(11*var(--u))] leading-none font-normal tracking-[0.2em] text-sand uppercase tabular-nums max-md:text-[11px]"
         >
           Opening <span ref={counter}>0</span>%
         </div>

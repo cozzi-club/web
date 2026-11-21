@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
-import { designSizes } from "@/lib/design";
+import { designSizes, u } from "@/lib/design";
 
 type Size = { w: number; h: number };
 
@@ -19,7 +19,7 @@ type Props = Size & {
  * width/height attribute rounding when Figma sizes are fractional.
  */
 export function SizedImage({ src, alt = "", w, h, mobile = { w, h }, priority, className }: Props) {
-  const style = { "--w": `${w}px`, "--h": `${h}px`, "--mw": `${mobile.w}px`, "--mh": `${mobile.h}px` } as CSSProperties;
+  const style = { "--w": u(w), "--h": u(h), "--mw": u(mobile.w), "--mh": u(mobile.h) } as CSSProperties;
   const sizes = designSizes(w, mobile.w);
 
   return (

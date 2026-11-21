@@ -31,15 +31,15 @@ export function MobileMenu({ className }: { className?: string }) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen(true)}
-        className={cn("flex cursor-pointer flex-col items-center gap-[6px]", className)}
+        className={cn("flex cursor-pointer flex-col items-center gap-[calc(6*var(--u))]", className)}
       >
-        <span className="flex size-5 items-center justify-center rounded-full border-[0.75px] border-current">
-          <Plus size={9} strokeWidth={1} absoluteStrokeWidth aria-hidden />
+        <span className="flex size-5 items-center justify-center rounded-full border-[calc(0.75*var(--u))] border-current">
+          <Plus size={9} strokeWidth={1} absoluteStrokeWidth aria-hidden className="size-[calc(9*var(--u))]" />
         </span>
-        <span className="font-sans text-[6px] leading-[7.8px] tracking-[-0.1em]">Menu</span>
+        <span className="font-sans text-[calc(6*var(--u))] leading-[calc(7.8*var(--u))] tracking-[-0.1em]">Menu</span>
       </button>
 
-      {/* Portalled to <body> so the zoomed header container doesn't scale the overlay. */}
+      {/* Portalled to <body>, out of the header frame; plain px inside (--u: 1px). */}
       {open &&
         createPortal(
           <div
@@ -48,21 +48,21 @@ export function MobileMenu({ className }: { className?: string }) {
             aria-modal="true"
             aria-label="Menu"
             data-lenis-prevent
-            className="fixed inset-0 z-50 flex flex-col bg-espresso px-6 py-5 text-parchment transition-opacity duration-300 starting:opacity-0"
+            className="fixed inset-0 z-50 flex flex-col bg-espresso px-6 py-5 text-parchment [--u:1px] transition-opacity duration-300 starting:opacity-0"
           >
             <div className="flex items-center justify-between">
-              <Logo className="w-[68px]" />
+              <Logo className="w-[calc(68*var(--u))]" />
               <button
                 type="button"
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}
                 className="cursor-pointer p-1"
               >
-                <X size={22} strokeWidth={1.5} absoluteStrokeWidth aria-hidden />
+                <X size={22} strokeWidth={1.5} absoluteStrokeWidth aria-hidden className="size-[calc(22*var(--u))]" />
               </button>
             </div>
             <nav className="mt-auto mb-auto">
-              <ul className="flex flex-col gap-3 font-display text-[42px] leading-[42px] font-bold tracking-[-0.03em] uppercase">
+              <ul className="flex flex-col gap-3 font-display text-[calc(42*var(--u))] leading-[calc(42*var(--u))] font-bold tracking-[-0.03em] uppercase">
                 {sitemap.map(({ label, href }) => (
                   <li key={label}>
                     <TransitionLink href={href} onClick={() => setOpen(false)} className="transition-opacity hover:opacity-60">

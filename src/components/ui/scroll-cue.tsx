@@ -1,5 +1,6 @@
 import { ArrowDown } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { u } from "@/lib/design";
 
 type ArrowSize = { w: number; h: number; stroke: number };
 
@@ -9,6 +10,7 @@ function DesignArrow({ w, h, stroke }: ArrowSize) {
     <svg
       width={w}
       height={h}
+      style={{ width: u(w), height: u(h) }}
       viewBox={`0 0 ${w} ${h}`}
       fill="none"
       stroke="currentColor"
@@ -34,7 +36,7 @@ export function ScrollCue({ href, size, className }: { href: string; size?: Arro
       aria-label="Scroll to next section"
       className={cn("inline-flex transition-transform duration-300 hover:translate-y-1", className)}
     >
-      {size ? <DesignArrow {...size} /> : <ArrowDown size={26} strokeWidth={2.3} absoluteStrokeWidth aria-hidden />}
+      {size ? <DesignArrow {...size} /> : <ArrowDown size={26} strokeWidth={2.3} absoluteStrokeWidth aria-hidden className="size-[calc(26*var(--u))]" />}
     </a>
   );
 }

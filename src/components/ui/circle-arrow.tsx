@@ -6,11 +6,11 @@ import { cn } from "@/lib/cn";
 export function CircleArrow({ className, ...props }: ComponentProps<"span">) {
   return (
     <span
-      className={cn("flex size-[37px] items-center justify-center rounded-full border-2 border-current", className)}
+      className={cn("flex size-[calc(37*var(--u))] items-center justify-center rounded-full border-[calc(2*var(--u))] border-current", className)}
       aria-hidden
       {...props}
     >
-      <ArrowRight size={20} strokeWidth={2.3} absoluteStrokeWidth />
+      <ArrowRight size={20} strokeWidth={2.3} absoluteStrokeWidth className="size-[calc(20*var(--u))]" />
     </span>
   );
 }

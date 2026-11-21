@@ -37,18 +37,18 @@ export default function FaqPage() {
         </div>
 
         <div className="w-1/2 max-md:w-full">
-          <div className="min-h-[855px] w-[640px] pt-[104px] pr-[84px] pb-[80px] pl-[58px] design-zoom max-md:min-h-0 max-md:w-[390px] max-md:pt-[39px] max-md:pr-[28.8px] max-md:pb-[76px] max-md:pl-[26.2px]">
-            <h1 className="font-display text-[25px] leading-[25px] font-bold tracking-[-0.03em] text-ink uppercase max-md:w-[285px] max-md:text-[18px] max-md:leading-[16.83px]">
+          <div className="min-h-[calc(855*var(--u))] w-[calc(640*var(--u))] pt-[calc(104*var(--u))] pr-[calc(84*var(--u))] pb-[calc(80*var(--u))] pl-[calc(58*var(--u))] text-body max-md:min-h-0 max-md:w-[calc(390*var(--u))] max-md:pt-[calc(39*var(--u))] max-md:pr-[calc(28.8*var(--u))] max-md:pb-[calc(76*var(--u))] max-md:pl-[calc(26.2*var(--u))]">
+            <h1 className="font-display text-[calc(25*var(--u))] leading-[calc(25*var(--u))] font-bold tracking-[-0.03em] text-ink uppercase max-md:w-[calc(285*var(--u))] max-md:text-[calc(18*var(--u))] max-md:leading-[calc(16.83*var(--u))]">
               Frequently asked questions
             </h1>
-            <p className="mt-[11px] font-sans text-[12px] leading-[11px] font-medium tracking-[-0.03em] text-ink/75 max-md:mt-[7.4px] max-md:w-[285px] max-md:text-[17px] max-md:leading-[17px]">
+            <p className="mt-[calc(11*var(--u))] font-sans text-[calc(12*var(--u))] leading-[calc(11*var(--u))] font-medium tracking-[-0.03em] text-ink/75 max-md:mt-[calc(7.4*var(--u))] max-md:w-[calc(285*var(--u))] max-md:text-[calc(17*var(--u))] max-md:leading-[calc(17*var(--u))]">
               Please email us at{" "}
               <a href="mailto:info@cozzi.world" className="underline-offset-2 hover:underline">
                 info@cozzi.world
               </a>{" "}
               if you have any other questions.
             </p>
-            <div className="mt-[42px] max-md:mt-[28.3px]">
+            <div className="mt-[calc(42*var(--u))] max-md:mt-[calc(28.3*var(--u))]">
               <FaqAccordion items={faqs} />
             </div>
           </div>

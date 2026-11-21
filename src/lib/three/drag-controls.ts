@@ -77,7 +77,7 @@ export function enableDrag({ surface, canvas, camera, items, frameHeight, motion
     if (drag?.pointerId === event.pointerId) {
       const dx = event.clientX - drag.x;
       const dy = event.clientY - drag.y;
-      const units = frameHeight / canvas.getBoundingClientRect().height; // zoom-aware
+      const units = frameHeight / canvas.getBoundingClientRect().height; // screen px → frame units
       const { position, rotation } = drag.item.handle;
       position.x += dx * units;
       position.y -= dy * units;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { designPx } from "@/lib/design";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
 // Figma "Group 2480" (design px): black arch (Figma: espresso) with the photo masked 5.40 / 6.51px inside it.
@@ -47,7 +48,7 @@ export function useArchReveal() {
         const measure = () => {
           const s = stage.current!.getBoundingClientRect();
           const a = arch.current!.getBoundingClientRect();
-          const k = a.width / ARCH.w; // current zoom
+          const k = a.width / ARCH.w; // screen px per design px
           const ix = ARCH.insetX * k;
           const iy = ARCH.insetY * k;
           const top = a.top - s.top;
@@ -114,7 +115,7 @@ export function useArchReveal() {
             0,
           )
           .fromTo(words, { y: 0, yPercent: 110 }, { y: 0, yPercent: 0, ease: "power3.out", duration: 0.35, stagger: { amount: 0.4 } }, 1.95)
-          .fromTo(cta.current, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.25 }, 2.5)
+          .fromTo(cta.current, { autoAlpha: 0, y: () => designPx(24) }, { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.25 }, 2.5)
           // Hold the finished view for a beat before the pin releases.
           .to({}, { duration: 0.25 });
       });

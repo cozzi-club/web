@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { Parallax } from "@/components/motion/parallax";
 import { cn } from "@/lib/cn";
-import { designSizes } from "@/lib/design";
+import { designSizes, u } from "@/lib/design";
 
 /** Position and size (px) in a Figma design frame. */
 export type Box = { x: number; y: number; w: number; h: number };
@@ -28,14 +28,14 @@ type Props = Placement & {
 export function PositionedImage({ src, alt = "", video, x, y, w, h, mobile, parallax, anchor, priority, className }: Props) {
   const m = mobile ?? { x, y, w, h };
   const style = {
-    "--x": `${x}px`,
-    "--y": `${y}px`,
-    "--w": `${w}px`,
-    "--h": `${h}px`,
-    "--mx": `${m.x}px`,
-    "--my": `${m.y}px`,
-    "--mw": `${m.w}px`,
-    "--mh": `${m.h}px`,
+    "--x": u(x),
+    "--y": u(y),
+    "--w": u(w),
+    "--h": u(h),
+    "--mx": u(m.x),
+    "--my": u(m.y),
+    "--mw": u(m.w),
+    "--mh": u(m.h),
   } as CSSProperties;
   const classes = cn(
     "absolute top-(--y) left-(--x) h-(--h) w-(--w)",

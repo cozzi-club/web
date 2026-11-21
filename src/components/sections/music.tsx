@@ -10,28 +10,28 @@ import { Heading, Text } from "@/components/ui/typography";
  */
 export function Music() {
   return (
-    <Section className="bg-espresso text-parchment md:sticky-split md:[--split-top:84.12px] md:[--split-bottom:105.11px] md:[--split-min:100svh]">
-      <Container pin="top" className="h-[29px] max-md:hidden">
-        <div className="absolute top-[28.93px] left-[43.69px] w-[1202.83px] border-t-2 border-sand/50" />
+    <Section className="bg-espresso text-parchment md:sticky-split md:[--split-top:calc(84.12*var(--u))] md:[--split-bottom:calc(105.11*var(--u))] md:[--split-min:100svh]">
+      <Container pin="top" className="h-[calc(29*var(--u))] max-md:hidden">
+        <div className="absolute top-[calc(28.93*var(--u))] left-[calc(43.69*var(--u))] w-[calc(1202.83*var(--u))] border-t-[calc(2*var(--u))] border-sand/50" />
       </Container>
-      <Container className="flex items-start justify-between pr-[113px] pl-[167px] max-md:flex-col max-md:items-center max-md:px-0 max-md:pt-[51px] max-md:pb-[38px]">
-        <div className="md:sticky-bottom md:mt-[9.47px] max-md:contents">
-          <div className="flex w-[366px] flex-col items-start gap-[40px] max-md:w-[230px] max-md:items-center max-md:gap-[14.4px] max-md:text-center">
-            <Heading size="lg" className="max-md:text-[37.7px] max-md:leading-[34.6px]">
+      <Container className="flex items-start justify-between pr-[calc(113*var(--u))] pl-[calc(167*var(--u))] max-md:flex-col max-md:items-center max-md:px-0 max-md:pt-[calc(51*var(--u))] max-md:pb-[calc(38*var(--u))]">
+        <div className="md:sticky-bottom md:mt-[calc(9.47*var(--u))] max-md:contents">
+          <div className="flex w-[calc(366*var(--u))] flex-col items-start gap-[calc(40*var(--u))] max-md:w-[calc(230*var(--u))] max-md:items-center max-md:gap-[calc(14.4*var(--u))] max-md:text-center">
+            <Heading size="lg" className="max-md:text-[calc(37.7*var(--u))] max-md:leading-[calc(34.6*var(--u))]">
               Get
               <br />
               jammin’
             </Heading>
-            <Text variant="lead" className="max-md:text-[18px] max-md:leading-[17.1px]">
+            <Text variant="lead" className="max-md:text-[calc(18*var(--u))] max-md:leading-[calc(17.1*var(--u))]">
               Hit the <span className="text-parchment/50">red button</span> to start the playlist. A little COZZI
               soundtrack for the road.
             </Text>
-            <CircleArrow className="text-mocha max-md:size-[23px] max-md:rotate-90 max-md:border-[1.4px] max-md:[&_svg]:size-[12px]" />
+            <CircleArrow className="text-mocha max-md:size-[calc(23*var(--u))] max-md:rotate-90 max-md:border-[calc(1.4*var(--u))] max-md:[&_svg]:size-[calc(12*var(--u))]" />
           </div>
         </div>
 
         {/* Panel art is 472.66px tall in a 507px box (shadow room below): -34.34px so its visible edge aligns. */}
-        <DiscPlayer className="md:-mb-[34.34px] max-md:mt-[31px]" />
+        <DiscPlayer className="md:-mb-[calc(34.34*var(--u))] max-md:mt-[calc(31*var(--u))]" />
       </Container>
     </Section>
   );

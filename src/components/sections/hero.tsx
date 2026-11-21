@@ -73,11 +73,11 @@ export function Hero({ banner, nextId }: { banner?: ReactNode; nextId: string })
 
         {/* `data-preloader-zoom`: settles from a slight zoom as the preloader's doors open. 10px above
             Figma (headline and objects together, 2026-11-20). */}
-        <Container data-preloader-zoom className="-top-[10px] h-[768px] max-md:h-[730px]">
+        <Container data-preloader-zoom className="-top-[calc(10*var(--u))] h-[calc(768*var(--u))] max-md:h-[calc(730*var(--u))]">
           <Heading
             as="h1"
             size="xl"
-            className="absolute inset-x-0 top-[251px] text-center max-md:top-[319px] max-md:text-[33px] max-md:leading-[31.5px]"
+            className="absolute inset-x-0 top-[calc(251*var(--u))] text-center max-md:top-[calc(319*var(--u))] max-md:text-[calc(33*var(--u))] max-md:leading-[calc(31.5*var(--u))]"
           >
             <IntroUnblurWords text={"Make a moment,\nmake a ritual of it,\nmake it yours."} />
           </Heading>
@@ -86,7 +86,7 @@ export function Hero({ banner, nextId }: { banner?: ReactNode; nextId: string })
         </Container>
 
         {/* Arrow top 143.3px above the bottom of the screen (Figma 2026-11-20: y 688.7 of 832). */}
-        <Container pin="bottom" className="h-[143.3px] max-md:h-[63px]">
+        <Container pin="bottom" className="h-[calc(143.3*var(--u))] max-md:h-[calc(63*var(--u))]">
           <ScrollCue href={`#${nextId}`} className="absolute top-0 left-1/2 -translate-x-1/2 text-mocha" />
         </Container>
       </div>

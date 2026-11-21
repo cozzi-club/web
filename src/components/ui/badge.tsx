@@ -6,8 +6,8 @@ export function Badge({ className, ...props }: ComponentProps<"span">) {
   return (
     <span
       className={cn(
-        "inline-flex h-[17px] items-center justify-center rounded-[6px] bg-ash pt-[3px] pr-3 pb-px pl-4",
-        "font-sans text-[8.8px] leading-[12.4px] font-medium text-paper uppercase whitespace-nowrap",
+        "inline-flex h-[calc(17*var(--u))] items-center justify-center rounded-[calc(6*var(--u))] bg-ash pt-[calc(3*var(--u))] pr-3 pb-px pl-4",
+        "font-sans text-[calc(8.8*var(--u))] leading-[calc(12.4*var(--u))] font-medium text-paper uppercase whitespace-nowrap",
         className,
       )}
       {...props}

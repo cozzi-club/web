@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { useLayoutEffect, useRef, useState } from "react";
+import { gsap } from "@/lib/gsap";
 import { PRELOADER_OPEN, PRELOADER_SEEN, preloaderWillPlay } from "@/lib/preloader";
 
 type Arch = { left: number; right: number; top: number; bottom: number };
@@ -25,8 +25,10 @@ const ZOOM_FROM = 1.06;
  * 3. A seam opens down the middle of the dark screen, then its two halves slide apart like doors.
  * 4. As they part, the hero settles from a slight zoom (`[data-preloader-zoom]`) and PRELOADER_OPEN
  *    fires, so page intros (the hero headline's unblur) start with the reveal.
- * On complete the flag is stored and the component unmounts. Already played (or reduced motion): it
- * unmounts straight away.
+ * Handled like the eaha project: the component owns a `show` state, checks sessionStorage itself in
+ * a layout effect (no head script, nothing in the root layout), and hides itself when the timeline
+ * completes. Already played this visit (or reduced motion): hidden straight away. Leaving the page
+ * kills the timeline (no revert, so nothing re-renders into an unmounted preloader).
  */
 export function usePreloader() {
   const line = useRef<SVGPathElement>(null);
@@ -36,8 +38,10 @@ export function usePreloader() {
   const right = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(true);
 
-  useGSAP(() => {
+  useLayoutEffect(() => {
     if (!preloaderWillPlay()) {
+      // sessionStorage only exists in the browser, so this can't be the initial state (as in eaha).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShow(false);
       return;
     }
@@ -59,15 +63,17 @@ export function usePreloader() {
 
     const progress = { value: 0 };
     const renderCount = () => {
+      // Guard: the counter is gone once the preloader has finished.
+      const el = counter.current;
       // Rounded down, so 100 shows exactly when the line closes.
-      counter.current!.textContent = String(Math.floor(progress.value * 100));
+      if (el) el.textContent = String(Math.floor(progress.value * 100));
     };
 
     // The hero waits behind the doors slightly zoomed in, then settles as they open.
     const zoom = document.querySelectorAll(ZOOM_TARGETS);
     gsap.set(zoom, { scale: ZOOM_FROM });
 
-    gsap
+    const timeline = gsap
       .timeline({
         onComplete: () => {
           try {
@@ -100,10 +106,12 @@ export function usePreloader() {
       .call(() => void dispatchEvent(new Event(PRELOADER_OPEN)), undefined, "open+=0.15");
 
     return () => {
+      timeline.kill();
       html.style.overflow = "";
       gsap.set(zoom, { clearProps: "transform" });
     };
-  });
+  }, []);
 
   return { line, counter, label, left, right, show };
 }
+

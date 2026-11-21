@@ -21,11 +21,11 @@ export default function CatalogPage() {
       <AnnouncementBar />
       <main className="relative flex-1 bg-cream">
         <SiteHeader />
-        <Container className="px-[101px] pt-[124px] pb-[158px] max-md:px-[32px] max-md:pt-[86px] max-md:pb-[48px]">
-          <Heading as="h1" size="lg" className="text-center leading-[35px] max-md:text-[35px] max-md:leading-[30px]">
+        <Container className="px-[calc(101*var(--u))] pt-[calc(124*var(--u))] pb-[calc(158*var(--u))] max-md:px-[calc(32*var(--u))] max-md:pt-[calc(86*var(--u))] max-md:pb-[calc(48*var(--u))]">
+          <Heading as="h1" size="lg" className="text-center leading-[calc(35*var(--u))] max-md:text-[calc(35*var(--u))] max-md:leading-[calc(30*var(--u))]">
             Catalogue
           </Heading>
-          <ProductGrid products={catalog} className="mt-[64px] max-md:mt-[36px]" />
+          <ProductGrid products={catalog} className="mt-[calc(64*var(--u))] max-md:mt-[calc(36*var(--u))]" />
         </Container>
       </main>
       <Footer />

@@ -20,7 +20,8 @@ export function HorizontalScroll({ id, width, height, className, children }: Pro
   return (
     <section ref={section} id={id} className={cn("relative h-svh overflow-hidden", className)}>
       <div ref={track} className="absolute top-0 left-0 will-change-transform">
-        <div className="origin-top-left [transform:scale(var(--track-scale,1))]" style={{ width, height }}>
+        {/* The track is laid out in plain design px (--u: 1px) and scaled to the screen height. */}
+        <div className="origin-top-left [--u:1px] [transform:scale(var(--track-scale,1))]" style={{ width, height }}>
           {children}
         </div>
       </div>

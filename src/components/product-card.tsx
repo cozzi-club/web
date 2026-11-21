@@ -17,7 +17,7 @@ export function ProductCard({ product }: { product: Product }) {
   const { name, category, image, status } = product;
 
   return (
-    <div className="group relative flex h-[445px] flex-col justify-between rounded-[2px] bg-paper pt-[15px] pr-[18px] pb-4 pl-5 text-ink has-focus-visible:outline-2 has-focus-visible:outline-ink">
+    <div className="group relative flex h-[calc(445*var(--u))] flex-col justify-between rounded-[calc(2*var(--u))] bg-paper pt-[calc(15*var(--u))] pr-[calc(18*var(--u))] pb-4 pl-5 text-ink has-focus-visible:outline-[calc(2*var(--u))] has-focus-visible:outline-ink">
       <SizedImage
         src={image.src}
         alt={name}
@@ -28,12 +28,12 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="relative flex items-center justify-between">
         {status ? <Badge>{status}</Badge> : <span />}
-        <ArrowUpRight size={17} strokeWidth={1.4} absoluteStrokeWidth aria-hidden />
+        <ArrowUpRight size={17} strokeWidth={1.4} absoluteStrokeWidth aria-hidden className="size-[calc(17*var(--u))]" />
       </div>
 
-      <div className="relative flex items-center justify-between font-medium uppercase leading-[15.5px]">
-        <span className="text-[12.2px]">{name}</span>
-        <span className="text-[11px] opacity-50">{category}</span>
+      <div className="relative flex items-center justify-between font-medium uppercase leading-[calc(15.5*var(--u))]">
+        <span className="text-[calc(12.2*var(--u))]">{name}</span>
+        <span className="text-[calc(11*var(--u))] opacity-50">{category}</span>
       </div>
 
       {/* Covers the whole card (stretched button keeps the markup valid: no divs inside a button). */}

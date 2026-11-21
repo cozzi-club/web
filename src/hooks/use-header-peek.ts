@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { DESIGN } from "@/lib/design";
+import { designPx } from "@/lib/design";
 
 /** Design px from the top of the screen that bring a hidden header back, and that keep it shown. */
 const EDGE = 24;
@@ -21,9 +21,8 @@ export function useHeaderPeek() {
     };
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
-      const zoom = Math.min(root.clientWidth, DESIGN.maxWidth) / DESIGN.desktop;
       const peeking = root.dataset.headerPeek !== undefined;
-      const near = e.clientY < (peeking ? HEADER : EDGE) * zoom;
+      const near = e.clientY < designPx(peeking ? HEADER : EDGE);
       if (near !== peeking) peek(near);
     };
     const onLeave = () => peek(false);

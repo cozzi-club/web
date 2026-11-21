@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Field } from "@/components/ui/field";
 import { useWaitlistDialog } from "@/hooks/use-waitlist-dialog";
 
-const label = "font-sans text-[14px] leading-[14px] font-medium tracking-[0.1em] uppercase";
+const label = "font-sans text-[calc(14*var(--u))] leading-[calc(14*var(--u))] font-medium tracking-[0.1em] uppercase";
 
 /**
  * "Be the first to be notified" sheet (Figma catalog): frosted glass (only the sheet blurs what's
@@ -26,8 +26,8 @@ export function WaitlistDialog() {
       onClick={(event) => event.target === event.currentTarget && close()}
       className="mx-0 mt-auto mb-0 max-h-none w-full max-w-none rounded-t-[5px] bg-[#bcbcbc]/35 p-0 text-[#141414] backdrop-blur-xl backdrop:bg-transparent translate-y-full transition-[translate,display,overlay] transition-discrete duration-500 ease-in-out open:translate-y-0 starting:open:translate-y-full"
     >
-      <Container className="h-[266px] pt-[31px] max-md:h-auto max-md:px-6 max-md:pt-6 max-md:pb-6">
-        <div className="mx-auto flex w-[363px] flex-col gap-[33px] max-md:w-full max-md:gap-6">
+      <Container className="h-[calc(266*var(--u))] pt-[calc(31*var(--u))] max-md:h-auto max-md:px-6 max-md:pt-6 max-md:pb-6">
+        <div className="mx-auto flex w-[calc(363*var(--u))] flex-col gap-[calc(33*var(--u))] max-md:w-full max-md:gap-6">
           <div className="flex items-start justify-between">
             <p className={label}>
               Be the first to be notified
@@ -35,7 +35,7 @@ export function WaitlistDialog() {
               when we go live
             </p>
             <button type="button" aria-label="Close" onClick={close} className="cursor-pointer">
-              <OctagonX size={20} strokeWidth={1.5} absoluteStrokeWidth aria-hidden />
+              <OctagonX size={20} strokeWidth={1.5} absoluteStrokeWidth aria-hidden className="size-[calc(20*var(--u))]" />
             </button>
           </div>
 
@@ -44,7 +44,7 @@ export function WaitlistDialog() {
               Thank you! We&apos;ll let you know.
             </p>
           ) : (
-            <form onSubmit={onSubmit} className="flex flex-col gap-[13px]">
+            <form onSubmit={onSubmit} className="flex flex-col gap-[calc(13*var(--u))]">
               <Field
                 label="Email*"
                 type="email"
@@ -56,7 +56,7 @@ export function WaitlistDialog() {
               />
               <button
                 type="submit"
-                className={`h-[45px] cursor-pointer rounded-[2px] border border-[#8e8e8e] transition-colors hover:bg-[#141414] hover:text-cream ${label}`}
+                className={`h-[calc(45*var(--u))] cursor-pointer rounded-[calc(2*var(--u))] border border-[#8e8e8e] transition-colors hover:bg-[#141414] hover:text-cream ${label}`}
               >
                 Submit
               </button>

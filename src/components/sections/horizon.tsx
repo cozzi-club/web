@@ -10,9 +10,9 @@ import { upcoming } from "@/content/products";
 export function Horizon({ id }: { id: string }) {
   return (
     <Section id={id} className="bg-cream md:min-h-0!">
-      <Container className="px-[101px] pt-[79.29px] pb-[79.8px] max-md:px-[32px] max-md:pt-[45px] max-md:pb-[21px]">
-        <div className="-ml-1 mr-1 flex h-[19px] items-start justify-between max-md:mr-0 max-md:ml-1 max-md:h-[40px] max-md:items-end">
-          <h2 className="font-sans text-[37px] leading-[19px] font-semibold text-ink uppercase max-md:text-[25px] max-md:leading-[20px] max-md:font-normal">
+      <Container className="px-[calc(101*var(--u))] pt-[calc(79.29*var(--u))] pb-[calc(79.8*var(--u))] max-md:px-[calc(32*var(--u))] max-md:pt-[calc(45*var(--u))] max-md:pb-[calc(21*var(--u))]">
+        <div className="-ml-1 mr-1 flex h-[calc(19*var(--u))] items-start justify-between max-md:mr-0 max-md:ml-1 max-md:h-[calc(40*var(--u))] max-md:items-end">
+          <h2 className="font-sans text-[calc(37*var(--u))] leading-[calc(19*var(--u))] font-semibold text-ink uppercase max-md:text-[calc(25*var(--u))] max-md:leading-[calc(20*var(--u))] max-md:font-normal">
             <span className="md:hidden">
               On the <br />
               horizon
@@ -25,13 +25,13 @@ export function Horizon({ id }: { id: string }) {
             as={TransitionLink}
             href="/catalog"
             variant="label-lg"
-            className="mt-px text-ink transition-opacity hover:opacity-60 max-md:mt-0 max-md:text-[17px]"
+            className="mt-px text-ink transition-opacity hover:opacity-60 max-md:mt-0 max-md:text-[calc(17*var(--u))]"
           >
             View all
           </Text>
         </div>
 
-        <ProductGrid products={upcoming} className="mt-[64px] max-md:mt-[73px]" />
+        <ProductGrid products={upcoming} className="mt-[calc(64*var(--u))] max-md:mt-[calc(73*var(--u))]" />
       </Container>
     </Section>
   );

@@ -14,8 +14,7 @@ export function useFixedHeader() {
     const el = header.current!;
     let start = 0;
     const update = () => {
-      // The header is zoomed (design frame), which scales its own `top` too: divide it back out.
-      el.style.top = `calc(${Math.max(0, start - window.scrollY)}px / var(--zoom))`;
+      el.style.top = `${Math.max(0, start - window.scrollY)}px`;
     };
     const measure = () => {
       start = el.parentElement!.getBoundingClientRect().top + window.scrollY;

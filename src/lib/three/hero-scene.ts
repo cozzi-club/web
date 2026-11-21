@@ -78,7 +78,7 @@ export async function mountHeroScene({ host, frame, models, trigger, motion }: O
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
   const canvas = renderer.domElement;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  // Size from the rendered box (accounts for CSS zoom); the canvas is stretched to fill the host.
+  // Size from the rendered box; the canvas is stretched to fill the host.
   const fit = () => {
     const { width, height } = host.getBoundingClientRect();
     renderer.setSize(width, height, false);

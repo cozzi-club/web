@@ -10,7 +10,7 @@ import { useHeaderPeek } from "@/hooks/use-header-peek";
 import { openWaitlist } from "@/hooks/use-waitlist-dialog";
 import { cn } from "@/lib/cn";
 
-const navText = "font-sans text-[15.55px] leading-[15.5px] font-normal tracking-[0.15em] uppercase";
+const navText = "font-sans text-[calc(15.55*var(--u))] leading-[calc(15.5*var(--u))] font-normal tracking-[0.15em] uppercase";
 
 /**
  * Page header on every page (Figma catalog frame): logo + nav, white with `mix-blend-difference`
@@ -27,7 +27,7 @@ export function SiteHeader({ className }: { className?: string }) {
       ref={header}
       pin="fixed"
       className={cn(
-        "z-40 h-[80px] text-white mix-blend-difference transition-[translate,opacity] duration-500 ease-out",
+        "z-40 h-[calc(80*var(--u))] text-white mix-blend-difference transition-[translate,opacity] duration-500 ease-out",
         "header-hidden:pointer-events-none header-hidden:-translate-y-full header-hidden:opacity-0",
         className,
       )}
@@ -35,19 +35,19 @@ export function SiteHeader({ className }: { className?: string }) {
       <TransitionLink
         href="/"
         aria-label="Cozzi home"
-        className="absolute top-[23.8px] left-[92.81px] w-[94.89px] max-md:top-[21px] max-md:left-[23px] max-md:w-[68px]"
+        className="absolute top-[calc(23.8*var(--u))] left-[calc(92.81*var(--u))] w-[calc(94.89*var(--u))] max-md:top-[calc(21*var(--u))] max-md:left-[calc(23*var(--u))] max-md:w-[calc(68*var(--u))]"
       >
         <Logo />
       </TransitionLink>
 
-      <nav aria-label="Main" className="absolute top-[26.48px] right-[83px] max-md:hidden">
+      <nav aria-label="Main" className="absolute top-[calc(26.48*var(--u))] right-[calc(83*var(--u))] max-md:hidden">
         <ul className={cn("flex gap-6", navText)}>
           {headerNav.map(({ label, href, soon }) => (
             <li key={label} className="relative">
               {soon ? (
                 <button type="button" onClick={openWaitlist} className="cursor-pointer uppercase transition-opacity hover:opacity-60">
                   {label}
-                  <span className="absolute top-[16px] left-1/2 flex h-4 w-[58px] -translate-x-1/2 items-center justify-center rounded-[10px] bg-[#7f3f25] text-[7.5px] leading-[7.5px] tracking-[-0.02em] normal-case">
+                  <span className="absolute top-[calc(16*var(--u))] left-1/2 flex h-4 w-[calc(58*var(--u))] -translate-x-1/2 items-center justify-center rounded-[calc(10*var(--u))] bg-[#7f3f25] text-[calc(7.5*var(--u))] leading-[calc(7.5*var(--u))] tracking-[-0.02em] normal-case">
                     Coming Soon!
                   </span>
                 </button>
@@ -61,7 +61,7 @@ export function SiteHeader({ className }: { className?: string }) {
         </ul>
       </nav>
 
-      <MobileMenu className="absolute top-[16px] right-[27px] md:hidden" />
+      <MobileMenu className="absolute top-[calc(16*var(--u))] right-[calc(27*var(--u))] md:hidden" />
     </Container>
   );
 }

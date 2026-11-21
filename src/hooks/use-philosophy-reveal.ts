@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { designPx } from "@/lib/design";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 /**
@@ -31,7 +32,7 @@ export function usePhilosophyReveal() {
           .fromTo(words, { opacity: 0.5 }, { opacity: 1, ease: "none", stagger: { amount: 0.9 }, duration: 0.1 }, 0)
           .fromTo(
             images,
-            { autoAlpha: 0, y: 32 },
+            { autoAlpha: 0, y: () => designPx(32) },
             { autoAlpha: 1, y: 0, ease: "power2.out", stagger: { amount: 0.95 }, duration: 0.2 },
             0.15,
           )
