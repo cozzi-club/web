@@ -23,9 +23,9 @@ export function Heading<T extends ElementType = "h2">({
 const textVariants = {
   body: "text-body font-hairline",
   lead: "text-lead font-medium",
-  label: "text-label font-semibold uppercase",
-  "label-lg": "text-label-lg font-semibold uppercase",
-  caption: "text-caption font-semibold",
+  label: "text-label font-medium uppercase",
+  "label-lg": "text-label-lg font-medium uppercase",
+  caption: "text-caption font-medium",
 } as const;
 
 /** TT Neoris body copy. */

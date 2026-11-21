@@ -8,7 +8,7 @@ const tones = {
   dark: { label: "text-[#dabeb5] leading-[7px]!", control: "bg-[#61463c] text-[#dabeb5] placeholder:text-[#dabeb5]/80 focus-visible:ring-[#dabeb5]" },
 };
 
-const text = "font-sans text-[11px] leading-[13px] font-semibold tracking-[-0.03em]";
+const text = "font-sans text-[11px] leading-[13px] font-medium tracking-[-0.03em]";
 const control = "w-full rounded-[2px] px-[15px] outline-none focus-visible:ring-1";
 
 type Common = { label: string; tone?: keyof typeof tones; className?: string };

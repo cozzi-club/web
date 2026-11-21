@@ -3,13 +3,13 @@ import { WaitlistButton } from "@/components/ui/waitlist-button";
 import type { CoffeeDetail } from "@/content/products";
 import { cn } from "@/lib/cn";
 
-const small = "font-sans text-[13px] leading-[13px] font-semibold tracking-[-0.03em]";
+const small = "font-sans text-[13px] leading-[13px] font-medium tracking-[-0.03em]";
 
 /**
- * "Product description" heading, spec table and availability cards (Figma "COFFEE/product", cream
+ * "Product description" heading, spec table and the availability box (Figma "COFFEE/product", cream
  * band, 90% of the screen tall with the block centred, Figma 2026-11-08; the design has no description
- * copy under the heading). The online-store card opens the waitlist. Mobile (54796:637): no heading;
- * specs + cards are the desktop block scaled to 358px.
+ * copy under the heading). The availability box (Figma 2026-11-20 "Frame 2538") opens the waitlist.
+ * Mobile (54796:637): no heading; specs + box are the desktop block scaled to 358px.
  */
 export function ProductDetails({ product, id }: { product: CoffeeDetail; id: string }) {
   return (
@@ -31,31 +31,11 @@ export function ProductDetails({ product, id }: { product: CoffeeDetail; id: str
             ))}
           </dl>
 
-          <ul
-            className={cn(
-              "mt-6 grid gap-[13px]",
-              product.availability.length > 1 ? "grid-cols-[209px_257px]" : "grid-cols-[209px]",
-            )}
-          >
-            {product.availability.map(({ title, note, store }) => {
-              const content = (
-                <>
-                  <span className="text-[14px] leading-[13px] tracking-[-0.03em]">{title}</span>
-                  <span className={cn("text-[16px] leading-[13px] tracking-[-0.03em] opacity-50", store && "underline")}>{note}</span>
-                </>
-              );
-              const box = "flex h-[147px] w-full flex-col items-start justify-between rounded-[2px] bg-[#2a1915] pt-4 pr-6 pb-[14px] pl-[19px] text-left font-sans font-semibold text-cream";
-              return (
-                <li key={title}>
-                  {store ? (
-                    <WaitlistButton className={cn(box, "cursor-pointer transition-colors hover:bg-[#3a241d]")}>{content}</WaitlistButton>
-                  ) : (
-                    <div className={box}>{content}</div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          {/* 479×99, 52px below the last spec line (cap height); both lines 65px down (14px tall): status 18px from the left, store link 13px from the right. */}
+          <WaitlistButton className="mt-[26px] flex h-[99px] w-full cursor-pointer items-end justify-between rounded-[2px] bg-[#2a1915] pr-[13.1px] pb-[20px] pl-[18px] text-left font-sans font-medium tracking-[-0.03em] text-cream transition-colors hover:bg-[#3a241d]">
+            <span className="text-[14px] leading-[14px]">{product.availability.title}</span>
+            <span className="text-[16px] leading-[14px] underline">{product.availability.note}</span>
+          </WaitlistButton>
         </div>
       </Container>
     </section>

@@ -1,3 +1,6 @@
+// Collection page, switched off (2026-11-21): the `_` folder keeps it out of routing, so /catalog
+// is a 404. Rename the folder back to `catalog` to bring it back.
+
 import type { Metadata } from "next";
 import { ProductGrid } from "@/components/product-grid";
 import { AnnouncementBar } from "@/components/sections/announcement-bar";

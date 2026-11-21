@@ -50,14 +50,14 @@ export function ContactForm() {
       <div>
         <button
           type="submit"
-          className="h-[46px] w-full cursor-pointer rounded-[2px] border border-[#61463c] font-sans text-[14px] leading-[14px] font-semibold tracking-[0.1em] text-[#dabeb5] uppercase transition-colors hover:bg-[#61463c]"
+          className="h-[46px] w-full cursor-pointer rounded-[2px] border border-[#61463c] font-sans text-[14px] leading-[14px] font-medium tracking-[0.1em] text-[#dabeb5] uppercase transition-colors hover:bg-[#61463c]"
         >
           Submit
         </button>
         {/* Figma "after form is filled and sent": check + thanks, centred 28px under the button. */}
         <div aria-live="polite">
           {sent && (
-            <p className="mt-[28px] flex items-center justify-center gap-[7.83px] font-sans text-[11px] leading-[13px] font-semibold tracking-[-0.03em] text-parchment transition-opacity duration-500 starting:opacity-0">
+            <p className="mt-[28px] flex items-center justify-center gap-[7.83px] font-sans text-[11px] leading-[13px] font-medium tracking-[-0.03em] text-parchment transition-opacity duration-500 starting:opacity-0">
               <CircleCheck aria-hidden className="size-[19px]" strokeWidth={1.5} />
               Thanks for dropping us a line. We&apos;ll get back to you.
             </p>

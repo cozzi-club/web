@@ -5,8 +5,8 @@ import { Wordmark } from "@/components/ui/wordmark";
 import { contact, sitemap, socials, type NavLink } from "@/content/navigation";
 import { cn } from "@/lib/cn";
 
-// Figma: white fill with a parchment stroke on the hairline weight.
-const strokeText = "text-white [-webkit-text-stroke:0.75px_var(--color-parchment)]";
+// Hairline weight thickened with a stroke; all of it parchment (links included), like the wordmark.
+const strokeText = "text-parchment [-webkit-text-stroke:0.75px_var(--color-parchment)]";
 const rule = "border-t-2 border-sand/50 max-md:border-t-[1.5px]";
 const ruleBelow = "border-b-2 border-sand/50 max-md:border-b-[1.5px]";
 

@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Field } from "@/components/ui/field";
 import { useWaitlistDialog } from "@/hooks/use-waitlist-dialog";
 
-const label = "font-sans text-[14px] leading-[14px] font-semibold tracking-[0.1em] uppercase";
+const label = "font-sans text-[14px] leading-[14px] font-medium tracking-[0.1em] uppercase";
 
 /**
  * "Be the first to be notified" sheet (Figma catalog): frosted glass (only the sheet blurs what's

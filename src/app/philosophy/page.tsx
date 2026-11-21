@@ -5,8 +5,8 @@ import { Footer } from "@/components/sections/footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "About | Cozzi",
-  description: "A whole lot more to COZZI: our story, the Naqamte origin and the work behind the work.",
+  title: "Philosophy | Cozzi",
+  description: "A whole lot more to COZZI: our philosophy, the Jimma origin and the work behind the work.",
 };
 
 export default function AboutPage() {

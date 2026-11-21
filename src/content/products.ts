@@ -8,8 +8,8 @@ export type CoffeeDetail = {
   /** Hero title lines (Figma sets the name over two lines). */
   title: string[];
   specs: ProductSpec[];
-  /** Small dark cards under the specs: headline + muted note (`store`: the online store, opens the waitlist). */
-  availability: { title: string; note: string; store?: boolean }[];
+  /** Dark box under the specs: status on the left, the online store (opens the waitlist) on the right. */
+  availability: { title: string; note: string };
   /** Large hero image (transparent product shot, 3:2). */
   hero: string;
 };
@@ -22,19 +22,16 @@ const images = {
 };
 
 export const coffee: CoffeeDetail = {
-  name: "Naqamte Forme",
-  title: ["‘Naqamte’", "Forme"],
+  name: "Jimma Reserve",
+  title: ["‘Jimma’", "Reserve"],
   hero: images.coffeeBag.src,
   specs: [
-    { label: "Origin", value: "Nekemte, Ethiopia" },
-    { label: "Process", value: "Natural" },
+    { label: "Origin", value: "Jimma Region, Ethiopia" },
+    { label: "Process", value: "Natural, Washed" },
     { label: "Roast", value: "Medium" },
     { label: "Altitude", value: "1800-2200 masl" },
   ],
-  availability: [
-    { title: "Coming Soon.", note: "On our online store.", store: true },
-    { title: "Soretti International", note: "Produced along with" },
-  ],
+  availability: { title: "Coming Soon.", note: "on our online store." },
 };
 
 const card = (name: string, category: string, image: Product["image"]): Product => ({

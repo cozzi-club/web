@@ -7,7 +7,7 @@ import { coffee } from "@/content/products";
 
 export const metadata: Metadata = {
   title: "Coffee | Cozzi",
-  description: "‘Naqamte’ Forme: single-origin coffee from Nekemte, Ethiopia. Natural process, medium roast.",
+  description: "‘Jimma’ Reserve: single-origin coffee from the Jimma region, Ethiopia. Natural and washed, medium roast.",
 };
 
 /** Figma "COFFEE/product": gradient hero, specs and availability, then the dark contact block. */

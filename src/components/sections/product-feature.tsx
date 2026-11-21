@@ -28,7 +28,7 @@ export function ProductFeature({ id }: { id: string }) {
               hairline weight. */}
           <Text className="w-[480px] [-webkit-text-stroke:0.5px_currentColor] max-md:ml-[69px] max-md:w-[266px] max-md:text-center max-md:text-[10.6px] max-md:leading-[14px] max-md:[-webkit-text-stroke:0.35px_var(--color-bone)]">
             <span className="block">Single-origin coffee from Jimma, Ethiopia.</span>
-            <span className="block md:mt-[4.9px]">Medium roast, a softer &amp; fuller expression of the bean.</span>
+            <span className="block md:mt-[4px]">Medium roast, a softer &amp; fuller expression of the bean.</span>
           </Text>
           <ButtonLink
             href="/coffee"

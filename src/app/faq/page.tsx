@@ -41,7 +41,7 @@ export default function FaqPage() {
             <h1 className="font-display text-[25px] leading-[25px] font-bold tracking-[-0.03em] text-ink uppercase max-md:w-[285px] max-md:text-[18px] max-md:leading-[16.83px]">
               Frequently asked questions
             </h1>
-            <p className="mt-[11px] font-sans text-[12px] leading-[11px] font-semibold tracking-[-0.03em] text-ink/75 max-md:mt-[7.4px] max-md:w-[285px] max-md:text-[17px] max-md:leading-[17px]">
+            <p className="mt-[11px] font-sans text-[12px] leading-[11px] font-medium tracking-[-0.03em] text-ink/75 max-md:mt-[7.4px] max-md:w-[285px] max-md:text-[17px] max-md:leading-[17px]">
               Please email us at{" "}
               <a href="mailto:info@cozzi.world" className="underline-offset-2 hover:underline">
                 info@cozzi.world

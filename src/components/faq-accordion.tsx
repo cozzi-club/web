@@ -42,7 +42,7 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
               aria-expanded={expanded}
               aria-controls={panel}
               onClick={() => setOpen(expanded ? -1 : index)}
-              className="flex w-full cursor-pointer items-center justify-between gap-6 text-left font-sans text-[13px] leading-[14px] font-semibold tracking-[-0.03em] text-ink max-md:text-[17px] max-md:leading-[17px]"
+              className="flex w-full cursor-pointer items-center justify-between gap-6 text-left font-sans text-[13px] leading-[14px] font-medium tracking-[-0.03em] text-ink max-md:text-[17px] max-md:leading-[17px]"
             >
               {question}
               <ToggleIcon open={expanded} />
@@ -56,7 +56,7 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
               )}
             >
               <div className="overflow-hidden">
-                <p className="w-[334px] pt-[23px] font-sans text-[12px] leading-[12px] font-semibold tracking-[-0.03em] text-ink/75 max-md:w-[291px] max-md:pt-[27.9px] max-md:pb-[3.45px] max-md:text-[17px] max-md:leading-[15px]">
+                <p className="w-[334px] pt-[23px] font-sans text-[12px] leading-[12px] font-medium tracking-[-0.03em] text-ink/75 max-md:w-[291px] max-md:pt-[27.9px] max-md:pb-[3.45px] max-md:text-[17px] max-md:leading-[15px]">
                   {answer}
                 </p>
               </div>

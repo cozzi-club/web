@@ -3,7 +3,7 @@ export type NavLink = { label: string; href: string };
 /** Site map — shared by the footer and the mobile menu. Root-relative so it works from any page. */
 export const sitemap: NavLink[] = [
   { label: "FAQ", href: "/faq" },
-  { label: "Our World", href: "/about" },
+  { label: "Philosophy", href: "/philosophy" },
   { label: "Coffee", href: "/coffee" },
   { label: "Collection", href: "/catalog" },
   { label: "Reach out", href: "/contact" },
@@ -22,8 +22,8 @@ export const socials: NavLink[] = [
 
 /** Desktop header nav. `soon`: a button that opens the waitlist, with a "Coming Soon!" pill. */
 export const headerNav: (NavLink & { soon?: boolean })[] = [
-  { label: "Our World", href: "/about" },
+  { label: "Philosophy", href: "/philosophy" },
   { label: "Coffee", href: "/coffee" },
-  { label: "Partner up", href: "/contact" },
+  { label: "Inquire", href: "/contact" },
   { label: "Shop", href: "#", soon: true },
 ];

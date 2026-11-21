@@ -85,7 +85,8 @@ export function Hero({ banner, nextId }: { banner?: ReactNode; nextId: string })
           <HeroObjects objects={objects} frames={FRAMES} triggerId={ID} />
         </Container>
 
-        <Container pin="bottom" className="h-[98px] max-md:h-[63px]">
+        {/* Arrow top 143.3px above the bottom of the screen (Figma 2026-11-20: y 688.7 of 832). */}
+        <Container pin="bottom" className="h-[143.3px] max-md:h-[63px]">
           <ScrollCue href={`#${nextId}`} className="absolute top-0 left-1/2 -translate-x-1/2 text-mocha" />
         </Container>
       </div>

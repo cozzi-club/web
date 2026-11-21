@@ -53,7 +53,7 @@ const collageLayers: Layer[] = [
   { src: "/images/about/drum-cutout.png", x: 3368.4, y: 0, w: 736.85, h: 732.76, stagger: 1 },
   { src: "/images/about/pour.jpg", x: 3324.08, y: 220.8, w: 401.09, h: 311.59, stagger: 0 },
   { src: "/images/about/table-cup.jpg", x: 2224.55, y: 218.08, w: 357.93, h: 335.68, stagger: 0 },
-  { src: "/images/about/map-2.jpg", x: 5644.68, y: 44.02, w: 215.01, h: 435.42, stagger: 1 },
+  { src: "/images/about/map-3.jpg", x: 5644.68, y: 44.02, w: 215.01, h: 435.42, stagger: 1 },
   { src: "/images/about/farmer-2.jpg", x: 5710.05, y: 241.65, w: 433.81, h: 286.2, stagger: 2 },
   { ...score, x: 3677.4, y: 637.67, w: 277.53, h: 69.79, stagger: 2 },
   { src: "/images/about/landscape.png", x: 4485.24, y: 280.38, w: 429.91, h: 252.17, stagger: 0 },
@@ -63,7 +63,7 @@ const collageLayers: Layer[] = [
 
 const mobileLayers: Layer[] = [
   { src: "/images/about/still-life-m.jpg", x: 0, y: 448.96, w: 390, h: 423.08 },
-  { src: "/images/about/map-m-2.jpg", x: 0.03, y: 2712.93, w: 232.31, h: 114.71 },
+  { src: "/images/about/map-m-3.jpg", x: 0.03, y: 2712.93, w: 232.31, h: 114.71 },
   { src: "/images/about/farmer-2.jpg", x: 94.44, y: 2765.36, w: 205.81, h: 135.78 },
   { src: "/images/about/wax-seal-m.png", x: 201.18, y: 2818.19, w: 188.82, h: 159.41 },
   { src: "/images/about/paper-m.jpg", x: 0, y: 2241.37, w: 351.42, h: 149.01 },
@@ -132,7 +132,7 @@ function Headline({ className }: { className?: string }) {
 
 const stories = {
   story: {
-    label: "The story",
+    label: "Philosophy",
     title: (
       <>
         The radiant
@@ -146,7 +146,7 @@ const stories = {
     label: "Origin",
     title: (
       <>
-        ‘Naqamte’
+        ‘Jimma’
         <br />A coffee
         <br />
         landscape
@@ -154,7 +154,7 @@ const stories = {
         of its own
       </>
     ),
-    body: "The place that doesn't need to grab its reputation from another has merit. Nekemte has been producing coffee that is hard to confuse with anywhere else for its character.",
+    body: "The place that doesn't need to grab its reputation from another has merit. Jimma has been producing coffee that is hard to confuse with anywhere else for its character.",
   },
   ethical: {
     label: "Ethical sourcing",
@@ -297,7 +297,7 @@ function AboutStack() {
   );
 }
 
-/** "A whole lot more to COZZI" brand story (the /about page). */
+/** "A whole lot more to COZZI" brand story (the /philosophy page). */
 export function About({ id }: { id: string }) {
   return (
     <div id={id}>

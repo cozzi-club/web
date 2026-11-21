@@ -69,12 +69,12 @@ export function Origins() {
           </div>
         </div>
 
-        {/* "Inside story, if you will" (Figma Frame 2523, 2026-11-08), centred on the full-screen
+        {/* "Inside story, if you will" (Figma Frame 2523, 2026-11-21: white), centred on the full-screen
             photo; in design px, so it scales with the design zoom. Heading 120px tall, copy 28px
             below it, button 40px below the copy. The copy is 412px (Figma 405.4) because word masks
             add a few px — keeps Figma's three lines. */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div ref={copy} className="flex w-[486.8px] flex-col items-center text-center text-parchment design-zoom">
+          <div ref={copy} className="flex w-[486.8px] flex-col items-center text-center text-white design-zoom">
             <Heading className="leading-[60px]">
               <SplitWords text={"Inside story,\nif you will"} />
             </Heading>
@@ -82,8 +82,8 @@ export function Origins() {
               <SplitWords text="A place, a way of working, and intentional choices made along the way." />
             </Text>
             <div ref={cta} className="pointer-events-auto invisible mt-[40px]">
-              <ButtonLink href="/about" tone="parchment">
-                Our story
+              <ButtonLink href="/philosophy" tone="white">
+                Our philosophy
               </ButtonLink>
             </div>
           </div>

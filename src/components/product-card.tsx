@@ -31,7 +31,7 @@ export function ProductCard({ product }: { product: Product }) {
         <ArrowUpRight size={17} strokeWidth={1.4} absoluteStrokeWidth aria-hidden />
       </div>
 
-      <div className="relative flex items-center justify-between font-semibold uppercase leading-[15.5px]">
+      <div className="relative flex items-center justify-between font-medium uppercase leading-[15.5px]">
         <span className="text-[12.2px]">{name}</span>
         <span className="text-[11px] opacity-50">{category}</span>
       </div>
