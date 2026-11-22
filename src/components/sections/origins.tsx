@@ -76,7 +76,7 @@ export function Origins() {
             photo; in design px (--u), so it scales with the page. Heading 120px tall, copy 28px
             below it, button 40px below the copy. The copy is 412px (Figma 405.4) because word masks
             add a few px — keeps Figma's three lines. */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mix-blend-difference">
           <div ref={copy} className="flex w-[calc(486.8*var(--u))] flex-col items-center text-center text-body text-white max-md:[--u:calc(var(--u0)*0.68)]">
             <Heading className="leading-[calc(60*var(--u))]">
               <SplitWords text={"Inside story,\nif you will"} />

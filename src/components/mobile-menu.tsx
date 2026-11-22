@@ -26,7 +26,8 @@ function BurgerIcon({ open }: { open: boolean }) {
 }
 
 /**
- * Mobile menu: a burger in the header that opens a full-screen sitemap overlay. The overlay sits
+ * Mobile menu: a burger in the header that opens a full-screen sitemap overlay (without Collection,
+ * whose page is switched off). The overlay sits
  * under the header (z-30 vs the header's z-40), so the logo and the button stay on top and the
  * burger becomes the close (X) button.
  */
@@ -71,7 +72,7 @@ export function MobileMenu({ className }: { className?: string }) {
           >
             <nav className="mt-auto mb-auto">
               <ul className="flex flex-col gap-3 font-display text-[calc(42*var(--u))] leading-[calc(42*var(--u))] font-bold tracking-[-0.03em] uppercase">
-                {sitemap.map(({ label, href }) => (
+                {sitemap.filter(({ href }) => href !== "/catalog").map(({ label, href }) => (
                   <li key={label}>
                     <TransitionLink href={href} onClick={() => setOpen(false)} className="transition-opacity hover:opacity-60">
                       {label}
