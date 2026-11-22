@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { AnnouncementBar } from "@/components/sections/announcement-bar";
 import { Footer } from "@/components/sections/footer";
 import { SiteHeader } from "@/components/site-header";
 import { Container } from "@/components/ui/container";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Inquire | Cozzi",
-  description: "Questions, bulk orders or just saying hello? Leave us a message and we’ll get back to you.",
-};
+export const metadata = pageMetadata({
+  title: "Inquire: Questions and Bulk Orders",
+  description:
+    "Got a question about the beans, a bulk coffee order or just want to say hello? Leave COZZI a message and we’ll get back to you.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

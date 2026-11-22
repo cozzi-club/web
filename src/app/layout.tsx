@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
 import { ViewTransitions } from "next-view-transitions";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { WaitlistDialog } from "@/components/waitlist-dialog";
+import { rootMetadata } from "@/lib/seo";
 import { banterGrotesk, ttNeoris } from "./fonts";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Cozzi",
-  description: "Make a moment, make a ritual of it, make it yours.",
-};
+export const metadata = rootMetadata;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

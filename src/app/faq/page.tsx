@@ -1,15 +1,19 @@
-import type { Metadata } from "next";
 import { getImageProps } from "next/image";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { JsonLd } from "@/components/json-ld";
 import { AnnouncementBar } from "@/components/sections/announcement-bar";
 import { Footer } from "@/components/sections/footer";
 import { SiteHeader } from "@/components/site-header";
 import { faqs } from "@/content/faq";
+import { faqJsonLd, pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "FAQ | Cozzi",
-  description: "Frequently asked questions about COZZI: our mission, where our coffee comes from, roasting, brewing and the founder.",
-};
+export const metadata = pageMetadata({
+  title: "Coffee FAQ",
+  description:
+    "Answers about COZZI: our mission, coffee from Jimma, Ethiopia, small-batch roasting, whole beans, brewing methods and the story of the founder.",
+  path: "/faq",
+});
 
 const ALT = "A clay jebena on a stone plinth in a sunlit concrete room";
 
@@ -28,6 +32,7 @@ function FaqPhoto() {
 export default function FaqPage() {
   return (
     <>
+      <JsonLd data={faqJsonLd(faqs)} />
       <AnnouncementBar />
       {/* Figma "FAHHH": photo on the left half (full bleed), questions on the right; mobile (54910:907) stacks them. */}
       <main className="relative flex flex-1 bg-cream max-md:flex-col">
@@ -43,8 +48,8 @@ export default function FaqPage() {
             </h1>
             <p className="mt-[calc(11*var(--u))] font-sans text-[calc(12*var(--u))] leading-[calc(11*var(--u))] font-medium tracking-[-0.03em] text-ink/75 max-md:mt-[calc(7.4*var(--u))] max-md:w-[calc(285*var(--u))] max-md:text-[calc(17*var(--u))] max-md:leading-[calc(17*var(--u))]">
               Please email us at{" "}
-              <a href="mailto:info@cozzi.world" className="underline-offset-2 hover:underline">
-                info@cozzi.world
+              <a href={`mailto:${site.email}`} className="underline-offset-2 hover:underline">
+                {site.email}
               </a>{" "}
               if you have any other questions.
             </p>

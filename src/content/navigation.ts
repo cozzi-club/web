@@ -1,3 +1,5 @@
+import { site } from "@/lib/site";
+
 export type NavLink = { label: string; href: string };
 
 /** Site map — shared by the footer and the mobile menu. Root-relative so it works from any page. */
@@ -10,9 +12,8 @@ export const sitemap: NavLink[] = [
 ];
 
 export const contact: NavLink[] = [
-  { label: "cozziclub@gmail.com", href: "mailto:cozziclub@gmail.com" },
-  { label: "+61 403 942 298", href: "tel:+61403942298" },
-  { label: "+251 967 416 500", href: "tel:+251967416500" },
+  { label: site.email, href: `mailto:${site.email}` },
+  ...site.phones.map(({ label, tel }) => ({ label, href: `tel:${tel}` })),
 ];
 
 /** All @cozziclub (Figma comment, 2026-11-08). */

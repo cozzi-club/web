@@ -34,6 +34,8 @@ type Layer = {
   stagger?: number;
   zoom?: number;
   className?: string;
+  /** Only for photos that carry meaning; collage scraps (paper, stamps, map pattern) stay decorative. */
+  alt?: string;
   attached?: Layer[];
 };
 
@@ -43,8 +45,17 @@ const letter = { src: "/images/about/letter.png", className: "opacity-30" };
 const letterOnDark = { ...letter, className: "opacity-40 invert" };
 const score = { src: "/images/about/score.png", className: "opacity-30" };
 
+// Alt text for the photos (image search reads these).
+const ALT = {
+  stillLife: "A clay jebena and coffee pot on a dark table",
+  pour: "Coffee poured from a clay jebena into a small cup",
+  cup: "A small coffee cup on a dark table",
+  farmer: "A farmer picking ripe coffee cherries",
+  landscape: "Farmland and hills in hazy light",
+};
+
 // Collage pieces baked from Figma (crops, masks and colour adjustments applied), in paint order.
-const stillLife: Layer = { src: "/images/about/still-life.jpg", x: INTRO.panel - 8, y: 0, w: INTRO.photo, h: 736, zoom: 1.5 };
+const stillLife: Layer = { src: "/images/about/still-life.jpg", alt: ALT.stillLife, x: INTRO.panel - 8, y: 0, w: INTRO.photo, h: 736, zoom: 1.5 };
 const collageLayers: Layer[] = [
   { src: "/images/about/paper.jpg", x: 4722.11, y: 0, w: 254.16, h: 599.39, stagger: 1 },
   { ...letter, x: 3211.72, y: 24.57, w: 373.57, h: 90.94, stagger: 1 },
@@ -53,28 +64,28 @@ const collageLayers: Layer[] = [
   // 40px left of Figma (3408.4): its drift runs up to ~34px ahead of the cup photo's, which would
   // open a gap between them.
   { src: "/images/about/drum-cutout.png", x: 3368.4, y: 0, w: 736.85, h: 732.76, stagger: 1 },
-  { src: "/images/about/pour.jpg", x: 3324.08, y: 220.8, w: 401.09, h: 311.59, stagger: 0 },
-  { src: "/images/about/table-cup.jpg", x: 2224.55, y: 218.08, w: 357.93, h: 335.68, stagger: 0 },
+  { src: "/images/about/pour.jpg", alt: ALT.pour, x: 3324.08, y: 220.8, w: 401.09, h: 311.59, stagger: 0 },
+  { src: "/images/about/table-cup.jpg", alt: ALT.cup, x: 2224.55, y: 218.08, w: 357.93, h: 335.68, stagger: 0 },
   { src: "/images/about/map-3.jpg", x: 5644.68, y: 44.02, w: 215.01, h: 435.42, stagger: 1 },
-  { src: "/images/about/farmer-2.jpg", x: 5710.05, y: 241.65, w: 433.81, h: 286.2, stagger: 2 },
+  { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 5710.05, y: 241.65, w: 433.81, h: 286.2, stagger: 2 },
   { ...score, x: 3677.4, y: 637.67, w: 277.53, h: 69.79, stagger: 2 },
-  { src: "/images/about/landscape.png", x: 4485.24, y: 280.38, w: 429.91, h: 252.17, stagger: 0 },
+  { src: "/images/about/landscape.png", alt: ALT.landscape, x: 4485.24, y: 280.38, w: 429.91, h: 252.17, stagger: 0 },
   // No stagger: the seal stays put on the track while the map and farmer drift past it.
   { src: "/images/about/wax-seal.png", x: 5534.8, y: 383.59, w: 370.74, h: 322.57 },
 ].map((layer) => ({ ...layer, x: fig(layer.x) }));
 
 const mobileLayers: Layer[] = [
-  { src: "/images/about/still-life-m.jpg", x: 0, y: 448.96, w: 390, h: 423.08 },
+  { src: "/images/about/still-life-m.jpg", alt: ALT.stillLife, x: 0, y: 448.96, w: 390, h: 423.08 },
   { src: "/images/about/map-m-3.jpg", x: 0.03, y: 2712.93, w: 232.31, h: 114.71 },
-  { src: "/images/about/farmer-2.jpg", x: 94.44, y: 2765.36, w: 205.81, h: 135.78 },
+  { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 94.44, y: 2765.36, w: 205.81, h: 135.78 },
   { src: "/images/about/wax-seal-m.png", x: 201.18, y: 2818.19, w: 188.82, h: 159.41 },
   { src: "/images/about/paper-m.jpg", x: 0, y: 2241.37, w: 351.42, h: 149.01 },
   { src: "/images/about/ephemera-stamps.png", x: 194, y: 2352, w: 119, h: 78 },
-  { src: "/images/about/landscape.png", x: 74, y: 2194, w: 239, h: 140 },
+  { src: "/images/about/landscape.png", alt: ALT.landscape, x: 74, y: 2194, w: 239, h: 140 },
   // The desktop cluster beside "The radiant throughline" (drum cut-out, pour photo on top), at 0.45×,
   // centred in the gap under that story (2026-11-22).
   { src: "/images/about/drum-cutout.png", x: 85.3, y: 1465, w: 331.58, h: 329.74 },
-  { src: "/images/about/pour.jpg", x: 65.4, y: 1564.4, w: 180.49, h: 140.22 },
+  { src: "/images/about/pour.jpg", alt: ALT.pour, x: 65.4, y: 1564.4, w: 180.49, h: 140.22 },
   { ...score, x: 100, y: 1784, w: 190, h: 48 },
 ];
 // Painted after the black band (it sits on top of it).
@@ -84,7 +95,7 @@ const mobileBandLayers: Layer[] = [
   { src: "/images/about/grinder.png", x: 52, y: 963, w: 264, h: 205 },
 ];
 
-function CollageLayer({ src, x, y, w, h, stagger, zoom, className, attached = [], sizes }: Layer & { sizes: (w: number) => string }) {
+function CollageLayer({ src, x, y, w, h, stagger, zoom, className, alt, attached = [], sizes }: Layer & { sizes: (w: number) => string }) {
   // The box spans the piece and anything attached; the inner layer is what the scroll hook moves.
   const left = Math.min(x, ...attached.map((a) => a.x));
   const top = Math.min(y, ...attached.map((a) => a.y));
@@ -98,13 +109,13 @@ function CollageLayer({ src, x, y, w, h, stagger, zoom, className, attached = []
       data-zoom={zoom}
     >
       <div className="absolute inset-0">
-        {[{ src, x, y, w, h, className }, ...attached].map((piece) => (
+        {[{ src, x, y, w, h, className, alt }, ...attached].map((piece) => (
           <div
             key={piece.src}
             className={cn("absolute", piece.className)}
             style={{ left: u(piece.x - left), top: u(piece.y - top), width: u(piece.w), height: u(piece.h) }}
           >
-            <Image src={piece.src} alt="" fill sizes={sizes(piece.w)} className="object-cover" />
+            <Image src={piece.src} alt={piece.alt ?? ""} fill sizes={sizes(piece.w)} className="object-cover" />
           </div>
         ))}
       </div>
@@ -127,7 +138,8 @@ function Rect({ x, y, w, h, className }: Omit<Layer, "src"> & { className: strin
 
 function Headline({ className }: { className?: string }) {
   return (
-    <Heading as="h2" className={cn("w-[calc(400*var(--u))] text-[calc(89.2*var(--u))]! leading-[calc(85.4*var(--u))]! text-sand", className)}>
+    // The page's h1 (rendered in the desktop track and the mobile stack; only one shows per breakpoint).
+    <Heading as="h1" className={cn("w-[calc(400*var(--u))] text-[calc(89.2*var(--u))]! leading-[calc(85.4*var(--u))]! text-sand", className)}>
       <span className="block text-right">Whole</span>
       <span className="block">Lot</span>
       <span className="block text-right">More</span>
