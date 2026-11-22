@@ -5,13 +5,13 @@ import { SizedImage } from "@/components/ui/sized-image";
 import { Heading, Text } from "@/components/ui/typography";
 import { UnblurWords } from "@/components/ui/unblur-words";
 
-/** Coffee feature (Figma 2026-11-20): "Reserve" over the bag, copy + "Find out"; md+ at least 110% of the screen tall. */
+/** Coffee feature (Figma 2026-11-20): "Reserve" over the bag (mobile too), copy + "Find out"; md+ at least 110% of the screen tall, mobile full screen. */
 export function ProductFeature({ id }: { id: string }) {
   return (
     // overflow-x-clip: the mobile bag (Figma 396px + 3px offset) bleeds past the 390px frame.
     <Section id={id} className="noise overflow-x-clip max-md:min-h-svh md:min-h-[110svh]! bg-[linear-gradient(to_bottom,#452a20_0%,#583629_21%,#6d4233_40%,#7d533e_56%,#8c634a_71%,#ae8864_89%,#d5b181_100%)] text-parchment">
       <Container className="h-[calc(812.03*var(--u))] pt-[calc(198.89*var(--u))] pr-[calc(105*var(--u))] pl-[calc(91*var(--u))] max-md:h-[calc(642*var(--u))] max-md:pt-[calc(126*var(--u))] max-md:pr-0 max-md:pl-0">
-        <Heading size="lg" className="absolute inset-x-0 top-[calc(109.92*var(--u))] text-center text-parchment max-md:hidden">
+        <Heading size="lg" className="absolute inset-x-0 top-[calc(109.92*var(--u))] text-center text-parchment max-md:top-[calc(60*var(--u))] max-md:text-[calc(35*var(--u))] max-md:leading-[calc(30*var(--u))]">
           <UnblurWords text="Reserve" />
         </Heading>
         <SizedImage

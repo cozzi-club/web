@@ -30,16 +30,16 @@ export function Origins() {
       {/* Heading and arch form one block (arch bottom 98.7px above the contact collage, which the
           contact section's top padding provides). The arch sits 77px higher than Figma (275.42 vs
           352.42), so the pinned block fits the screen with room above the heading. */}
-      <Container className="h-[calc(567.25*var(--u))] max-md:h-[calc(415.5*var(--u))]">
+      <Container className="h-[calc(567.25*var(--u))] max-md:h-[calc(440.5*var(--u))]">
         <Heading className="absolute inset-x-0 top-0 text-center text-ink max-md:top-[calc(10*var(--u))] max-md:text-[calc(35*var(--u))] max-md:leading-[calc(30*var(--u))]">
           <UnblurWords text={"The\ndoor into\nthe club"} />
         </Heading>
         {/* Figma arch (241.79×291.83, black frame, photo masked 5.4 / 6.51 inside), drawn in CSS so the
-            jebena can be framed on the vase. Mobile: 220 wide (same proportions), 50px under the heading.
+            jebena can be framed on the vase. Mobile: 220 wide (same proportions), 75px under the heading.
             The reveal starts from exactly this crop. */}
         <div
           ref={arch}
-          className="absolute top-[calc(275.42*var(--u))] left-[calc(519.1*var(--u))] h-[calc(291.83*var(--u))] w-[calc(241.79*var(--u))] rounded-t-full bg-ink max-md:top-[calc(150*var(--u))] max-md:left-[calc(85*var(--u))] max-md:h-[calc(265.5*var(--u))] max-md:w-[calc(220*var(--u))]"
+          className="absolute top-[calc(275.42*var(--u))] left-[calc(519.1*var(--u))] h-[calc(291.83*var(--u))] w-[calc(241.79*var(--u))] rounded-t-full bg-ink max-md:top-[calc(175*var(--u))] max-md:left-[calc(85*var(--u))] max-md:h-[calc(265.5*var(--u))] max-md:w-[calc(220*var(--u))]"
         >
           <div className="absolute inset-x-[2.233%] inset-y-[2.231%] overflow-hidden rounded-t-full">
             <Image
@@ -56,15 +56,17 @@ export function Origins() {
 
       {/* Full-screen reveal layer: hidden until the hook clips it to the arch. Outside the design
           frame (full screen). Lazy image. Mobile: the same reveal; the copy is the desktop block at 0.68×. */}
-      {/* 2px taller than the screen: smooth scrolling pins at fractional offsets, which would leave a
-          sub-pixel line of the section below the stage. */}
+      {/* lvh: the screen height with mobile browser toolbars hidden, so the layer still covers the
+          screen after Chrome hides its address bar on scroll (svh left a gap; dvh resizes mid-pin).
+          Same as vh on desktop. 2px taller: smooth scrolling pins at fractional offsets, which would
+          leave a sub-pixel line of the section below the stage. */}
       <div
         ref={stage}
-        className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100svh+2px)]"
+        className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100lvh+2px)]"
       >
         <div ref={frame} aria-hidden className="absolute inset-0 bg-ink">
           <div ref={photoWindow} className="absolute inset-0 overflow-hidden">
-            <div ref={photo} className="absolute top-1/2 left-1/2 aspect-[3907/2544] w-[max(100%,calc((100svh+2px)*3907/2544))]">
+            <div ref={photo} className="absolute top-1/2 left-1/2 aspect-[3907/2544] w-[max(100%,calc((100lvh+2px)*3907/2544))]">
               <Image src={JEBENA} alt="" fill sizes="100vw" />
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { DESIGN } from "@/lib/design";
 import { gsap } from "@/lib/gsap";
 import { PRELOADER_OPEN, PRELOADER_SEEN, preloaderWillPlay } from "@/lib/preloader";
 
@@ -52,8 +53,8 @@ export function usePreloader() {
     const w = innerWidth;
     const h = innerHeight;
     // Arch: centred, about a third of the screen wide (narrower on tall screens), rising from the
-    // bottom edge to just above the middle.
-    const width = Math.min(w * 0.34, h * 0.5);
+    // bottom edge to just above the middle. Phones: 70% of the width (a third reads too narrow).
+    const width = w < DESIGN.md ? w * 0.7 : Math.min(w * 0.34, h * 0.5);
     const arch: Arch = { left: (w - width) / 2, right: (w + width) / 2, top: h * 0.36, bottom: h + 2 };
 
     const path = line.current!;

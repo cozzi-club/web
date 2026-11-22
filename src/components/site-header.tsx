@@ -17,7 +17,7 @@ const navText = "font-sans text-[calc(15.55*var(--u))] leading-[calc(15.5*var(--
  * so it stays legible over any section. Fixed: starts at its spot in the page (its positioned
  * parent's top) and stays at the top of the screen while scrolling (`useFixedHeader`). Slides away
  * while `<html data-header="hidden">` (set by the About side-scroll), and back while the mouse is at
- * the top of the screen (`useHeaderPeek`). Mobile: logo + Menu button.
+ * the top of the screen (`useHeaderPeek`). Mobile: logo + burger menu.
  */
 export function SiteHeader({ className }: { className?: string }) {
   const header = useFixedHeader();
@@ -61,7 +61,8 @@ export function SiteHeader({ className }: { className?: string }) {
         </ul>
       </nav>
 
-      <MobileMenu className="absolute top-[calc(16*var(--u))] right-[calc(27*var(--u))] md:hidden" />
+      {/* Burger: icon centred on the logo line, its right edge 27px in (the button adds 8px padding). */}
+      <MobileMenu className="absolute top-[calc(12*var(--u))] right-[calc(19*var(--u))] md:hidden" />
     </Container>
   );
 }
