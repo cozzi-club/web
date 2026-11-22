@@ -6,6 +6,7 @@ import { ScrollCue } from "@/components/ui/scroll-cue";
 import { Section } from "@/components/ui/section";
 import { Heading } from "@/components/ui/typography";
 import { IntroUnblurWords } from "@/components/ui/unblur-words";
+import { scaleBox } from "@/lib/design";
 
 const ID = "hero";
 const FRAMES = { desktop: { width: 1280, height: 768 }, mobile: { width: 390, height: 730 } };
@@ -17,10 +18,13 @@ const MODELS = {
   stool: "/3d/hero/wooden_stool.glb",
 };
 
+// Mobile objects 15% smaller than Figma, each about its own centre (2026-11-22).
+const MOBILE_SIZE = 0.85;
+
 // Per layout: poster = Figma export box; fit = the object's visible bounds, which the 3D model fills.
 // Diagonal pairs (mask/stool, jug/drum) morph-swap in place on an interval, pairs taking turns;
 // a swapped-in model fills its new slot's fit box, so every slot keeps its Figma size.
-const objects: HeroObject[] = [
+const figmaObjects: HeroObject[] = [
   {
     src: "/images/hero/mask.png",
     model: MODELS.mask,
@@ -58,6 +62,10 @@ const objects: HeroObject[] = [
     mobile: { poster: { x: 180, y: 392, w: 233, h: 257 }, fit: { x: 202.9, y: 445.3, w: 142.8, h: 162.4 } },
   },
 ];
+const objects = figmaObjects.map((o) => ({
+  ...o,
+  mobile: { poster: scaleBox(o.mobile.poster, MOBILE_SIZE), fit: scaleBox(o.mobile.fit, MOBILE_SIZE) },
+}));
 
 /** Banner + hero fill exactly one screen; header pins to the top, scroll cue to the bottom. */
 export function Hero({ banner, nextId }: { banner?: ReactNode; nextId: string }) {
@@ -85,8 +93,8 @@ export function Hero({ banner, nextId }: { banner?: ReactNode; nextId: string })
           <HeroObjects objects={objects} frames={FRAMES} triggerId={ID} />
         </Container>
 
-        {/* Arrow top 143.3px above the bottom of the screen (Figma 2026-11-20: y 688.7 of 832). */}
-        <Container pin="bottom" className="h-[calc(143.3*var(--u))] max-md:h-[calc(63*var(--u))]">
+        {/* Arrow top 143.3px above the bottom of the screen (Figma 2026-11-20: y 688.7 of 832); mobile 95. */}
+        <Container pin="bottom" className="h-[calc(143.3*var(--u))] max-md:h-[calc(95*var(--u))]">
           <ScrollCue href={`#${nextId}`} className="absolute top-0 left-1/2 -translate-x-1/2 text-mocha" />
         </Container>
       </div>

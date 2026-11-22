@@ -14,8 +14,8 @@ const inset = (t: number, r: number, b: number, l: number, radius: number) =>
 const FULL = inset(0, 0, 0, 0, 0);
 
 /**
- * Scroll-scrubbed arch ("the door") → full-screen jebena → "Inside story, if you will" (md+, motion
- * allowed). The original version, as requested in Figma:
+ * Scroll-scrubbed arch ("the door") → full-screen jebena → "Inside story, if you will" (desktop and
+ * mobile, motion allowed). The original version, as requested in Figma:
  * 1. Two clip-paths open from the arch's shape to the viewport — the black frame, then the
  *    photo window inside it — while the photo scales from the arch crop (fit to height, framed on
  *    the vase) to covering the screen. Starts only once the whole section is in view (pinned) and
@@ -38,7 +38,7 @@ export function useArchReveal() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Space above (and below) the section when it's pinned centred on the screen.
         const offset = () => Math.max(0, (innerHeight - section.current!.offsetHeight) / 2);
         const place = () => gsap.set(stage.current, { top: -offset() });
@@ -60,12 +60,17 @@ export function useArchReveal() {
           const scale = (a.height - 2 * iy) / p.offsetHeight;
           const windowW = a.width - 2 * ix;
           const focus = (windowW - p.offsetWidth * scale) * (ARCH_FOCUS_X - 0.5);
+          // End: full screen. When the photo is wider than the screen (portrait phones), slide it
+          // toward the vase as far as its edge allows; on desktop it's screen-wide, so this is 0.
+          const spare = Math.max(0, (p.offsetWidth - s.width) / 2);
+          const endX = gsap.utils.clamp(-spare, spare, (0.5 - ARCH_FOCUS_X) * p.offsetWidth);
           return {
             frame: inset(top, right, bottom, left, a.width / 2),
             window: inset(top + iy, right + ix, bottom + iy, left + ix, a.width / 2 - ix),
             scale,
             x: left + a.width / 2 - s.width / 2 + focus,
             y: top + a.height / 2 - s.height / 2,
+            endX,
           };
         };
         let geometry = measure();
@@ -111,7 +116,7 @@ export function useArchReveal() {
           .fromTo(
             photo.current,
             { scale: () => geometry.scale, x: () => geometry.x, y: () => geometry.y },
-            { scale: 1, x: 0, y: 0, duration: 1.9 },
+            { scale: 1, x: () => geometry.endX, y: 0, duration: 1.9 },
             0,
           )
           .fromTo(words, { y: 0, yPercent: 110 }, { y: 0, yPercent: 0, ease: "power3.out", duration: 0.35, stagger: { amount: 0.4 } }, 1.95)

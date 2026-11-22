@@ -25,27 +25,28 @@ export function Origins() {
     // Top padding: Figma's 79px gap from the coffee gradient (On the horizon used to sit between).
     <Section
       ref={section}
-      className="overflow-x-clip bg-cream pt-[calc(79.29*var(--u))] md:min-h-0! max-md:pt-[calc(48*var(--u))]"
+      className="overflow-x-clip bg-cream pt-[calc(79.29*var(--u))] md:min-h-0! max-md:pt-[calc(48*var(--u))] max-md:pb-[calc(60*var(--u))]"
     >
       {/* Heading and arch form one block (arch bottom 98.7px above the contact collage, which the
           contact section's top padding provides). The arch sits 77px higher than Figma (275.42 vs
           352.42), so the pinned block fits the screen with room above the heading. */}
-      <Container className="h-[calc(567.25*var(--u))] max-md:h-[calc(400*var(--u))]">
+      <Container className="h-[calc(567.25*var(--u))] max-md:h-[calc(415.5*var(--u))]">
         <Heading className="absolute inset-x-0 top-0 text-center text-ink max-md:top-[calc(10*var(--u))] max-md:text-[calc(35*var(--u))] max-md:leading-[calc(30*var(--u))]">
           <UnblurWords text={"The\ndoor into\nthe club"} />
         </Heading>
         {/* Figma arch (241.79×291.83, black frame, photo masked 5.4 / 6.51 inside), drawn in CSS so the
-            jebena can be framed on the vase — the reveal starts from exactly this crop. */}
+            jebena can be framed on the vase. Mobile: 220 wide (same proportions), 50px under the heading.
+            The reveal starts from exactly this crop. */}
         <div
           ref={arch}
-          className="absolute top-[calc(275.42*var(--u))] left-[calc(519.1*var(--u))] h-[calc(291.83*var(--u))] w-[calc(241.79*var(--u))] rounded-t-full bg-ink max-md:top-[calc(221*var(--u))] max-md:left-[calc(132*var(--u))] max-md:h-[calc(152*var(--u))] max-md:w-[calc(126*var(--u))]"
+          className="absolute top-[calc(275.42*var(--u))] left-[calc(519.1*var(--u))] h-[calc(291.83*var(--u))] w-[calc(241.79*var(--u))] rounded-t-full bg-ink max-md:top-[calc(150*var(--u))] max-md:left-[calc(85*var(--u))] max-md:h-[calc(265.5*var(--u))] max-md:w-[calc(220*var(--u))]"
         >
           <div className="absolute inset-x-[2.233%] inset-y-[2.231%] overflow-hidden rounded-t-full">
             <Image
               src={JEBENA}
               alt="A clay jebena on a concrete plinth in a beam of light"
               fill
-              sizes={designSizes(231, 120)}
+              sizes={designSizes(231, 210)}
               className="object-cover"
               style={{ objectPosition: `${ARCH_FOCUS_X * 100}% 50%` }}
             />
@@ -54,12 +55,12 @@ export function Origins() {
       </Container>
 
       {/* Full-screen reveal layer: hidden until the hook clips it to the arch. Outside the design
-          frame (full screen). Lazy image, never rendered on mobile. */}
+          frame (full screen). Lazy image. Mobile: the same reveal; the copy is the desktop block at 0.68×. */}
       {/* 2px taller than the screen: smooth scrolling pins at fractional offsets, which would leave a
           sub-pixel line of the section below the stage. */}
       <div
         ref={stage}
-        className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100svh+2px)] max-md:hidden"
+        className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100svh+2px)]"
       >
         <div ref={frame} aria-hidden className="absolute inset-0 bg-ink">
           <div ref={photoWindow} className="absolute inset-0 overflow-hidden">
@@ -74,7 +75,7 @@ export function Origins() {
             below it, button 40px below the copy. The copy is 412px (Figma 405.4) because word masks
             add a few px — keeps Figma's three lines. */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div ref={copy} className="flex w-[calc(486.8*var(--u))] flex-col items-center text-center text-body text-white">
+          <div ref={copy} className="flex w-[calc(486.8*var(--u))] flex-col items-center text-center text-body text-white max-md:[--u:calc(var(--u0)*0.68)]">
             <Heading className="leading-[calc(60*var(--u))]">
               <SplitWords text={"Inside story,\nif you will"} />
             </Heading>

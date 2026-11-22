@@ -5,9 +5,9 @@ import { designPx } from "@/lib/design";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 /**
- * Scroll-scrubbed "For the buna enthusiasts" reveal (md+, motion allowed). The section pins while the heading
- * fills in word by word (50% → full ink) and the photos fade and rise into place one at a time,
- * in DOM order, overlapping the copy and finishing just after it.
+ * Scroll-scrubbed "For the buna enthusiasts" reveal (motion allowed; desktop and mobile). The section pins
+ * while the heading fills in word by word (50% → full ink) and the photos shown at this width fade
+ * and rise into place one at a time, in DOM order, overlapping the copy and finishing just after it.
  * `words` holds the heading's word spans; `photos` is the parent of the photo wrappers.
  */
 export function usePhilosophyReveal() {
@@ -18,9 +18,11 @@ export function usePhilosophyReveal() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      // Both layouts; re-run when crossing md, since mobile shows fewer photos.
+      mm.add({ desktop: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-preference)" }, ({ conditions }) => {
+        if (!conditions!.motion) return;
         const words = heading.current!.querySelectorAll("[data-word]");
-        const images = photos.current!.children;
+        const images = [...photos.current!.children].filter((el) => getComputedStyle(el).display !== "none");
 
         gsap
           .timeline({

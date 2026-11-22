@@ -47,7 +47,9 @@ function Collage({ art, className }: { art: keyof typeof collages; className?: s
 // `collage`: [desktop, mobile] art.
 const surfaces = {
   cream: { section: "bg-cream", text: "text-ink", button: "ink", collage: ["light", "light"] },
-  espresso: { section: "bg-espresso", text: "text-cream", button: "parchment", collage: ["dark", "dark"] },
+  // Mobile: 29.9px more on top, so the heading sits 47.5px below the cream section above, the same gap
+  // that section leaves under its last image.
+  espresso: { section: "bg-espresso max-md:pt-[calc(29.9*var(--u))]", text: "text-cream", button: "parchment", collage: ["dark", "dark"] },
   coffee: {
     section: "bg-espresso max-md:bg-cream",
     text: "text-cream max-md:text-ink",

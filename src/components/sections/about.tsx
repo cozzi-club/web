@@ -17,7 +17,8 @@ const SHIFT = 822 + 1274.94 - (INTRO.panel - 8 + INTRO.photo);
 const fig = (x: number) => x - SHIFT;
 const TRACK = { width: fig(6235), height: 736 };
 // Mobile: the vertical "mob" frame (390px wide), without its own header (the page uses SiteHeader) and contact block.
-const MOBILE = { width: 390, height: 3010 };
+// Ends 47.5px below the wax seal's visible edge, the same gap the contact block leaves above its heading.
+const MOBILE = { width: 390, height: 2980.1 };
 
 /**
  * Collage piece, in track px. `stagger`: order within its collage cluster (later pieces drift a little
@@ -70,6 +71,10 @@ const mobileLayers: Layer[] = [
   { src: "/images/about/paper-m.jpg", x: 0, y: 2241.37, w: 351.42, h: 149.01 },
   { src: "/images/about/ephemera-stamps.png", x: 194, y: 2352, w: 119, h: 78 },
   { src: "/images/about/landscape.png", x: 74, y: 2194, w: 239, h: 140 },
+  // The desktop cluster beside "The radiant throughline" (drum cut-out, pour photo on top), at 0.45×,
+  // centred in the gap under that story (2026-11-22).
+  { src: "/images/about/drum-cutout.png", x: 85.3, y: 1465, w: 331.58, h: 329.74 },
+  { src: "/images/about/pour.jpg", x: 65.4, y: 1564.4, w: 180.49, h: 140.22 },
   { ...score, x: 100, y: 1784, w: 190, h: 48 },
 ];
 // Painted after the black band (it sits on top of it).

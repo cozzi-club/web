@@ -5,12 +5,11 @@ import { PositionedImage, type Box } from "@/components/ui/positioned-image";
 import { MOBILE_QUERY, useMediaQuery } from "@/hooks/use-media-query";
 import { useHeroScene } from "@/hooks/use-hero-scene";
 import { cn } from "@/lib/cn";
+import { scaleBox } from "@/lib/design";
 import type { HeroModel } from "@/lib/three/hero-scene";
 
 type Frame = { width: number; height: number };
 
-/** `box` scaled by `k` about its centre. */
-const scaleBox = ({ x, y, w, h }: Box, k = 1): Box => ({ x: x + (w * (1 - k)) / 2, y: y + (h * (1 - k)) / 2, w: w * k, h: h * k });
 
 export type HeroObject = Omit<HeroModel, keyof Box> & {
   src: string;

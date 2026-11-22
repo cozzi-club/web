@@ -15,6 +15,12 @@ export function designPx(n: number) {
   return n * (w < DESIGN.md ? w / DESIGN.mobile : Math.min(w, DESIGN.maxWidth) / DESIGN.desktop);
 }
 
+/** A design-px box (`x`, `y`, `w`, `h`) scaled by `k` about its centre. Shared by server and client code. */
+export function scaleBox<B extends { x: number; y: number; w: number; h: number }>(box: B, k = 1): B {
+  const { x, y, w, h } = box;
+  return { ...box, x: x + (w * (1 - k)) / 2, y: y + (h * (1 - k)) / 2, w: w * k, h: h * k };
+}
+
 /** A length of `n` design px (for sizes set from code, e.g. Figma coordinates in style props). */
 export const u = (n: number) => `calc(${n} * var(--u))`;
 
