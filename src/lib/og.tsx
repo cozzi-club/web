@@ -10,11 +10,15 @@ export async function publicImage(src: string, type: string) {
   return `data:${type};base64,${file.toString("base64")}`;
 }
 
-/** The site's two typefaces, from the source files (ImageResponse can't read woff2). */
+/**
+ * The site's two typefaces for share images (ImageResponse can't read woff2). Committed Latin
+ * subsets in src/app/fonts/og (same characters as the site's woff2 files), since the source
+ * .otf/.ttf files are not in git.
+ */
 export async function ogFonts() {
   const [banter, neoris] = await Promise.all([
-    readFile(join(process.cwd(), "src/app/fonts/BanterGrotesk-Bold.otf")),
-    readFile(join(process.cwd(), "src/app/fonts/TT Neoris Medium.ttf")),
+    readFile(join(process.cwd(), "src/app/fonts/og/banter-grotesk-bold.otf")),
+    readFile(join(process.cwd(), "src/app/fonts/og/tt-neoris-medium.ttf")),
   ]);
   return [
     { name: "Banter", data: banter, weight: 700 as const, style: "normal" as const },
