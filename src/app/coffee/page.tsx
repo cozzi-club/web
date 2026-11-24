@@ -6,9 +6,9 @@ import { coffee } from "@/content/products";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "‘Jimma’ Reserve Ethiopian Coffee",
+  title: "Jimma Reserve Ethiopian Coffee",
   description:
-    "‘Jimma’ Reserve: single-origin coffee from the Jimma region, Ethiopia. Natural and washed, medium roast, grown at 1800 to 2200 masl. Coming soon.",
+    "Jimma Reserve: single-origin coffee from the Jimma region, Ethiopia. Natural and washed, medium roast, grown at 1800 to 2200 masl. Coming soon.",
   path: "/coffee",
   ownImage: true,
 });

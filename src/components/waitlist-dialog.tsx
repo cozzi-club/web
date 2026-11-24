@@ -6,6 +6,7 @@ import { Field } from "@/components/ui/field";
 import { useWaitlistDialog } from "@/hooks/use-waitlist-dialog";
 
 const label = "font-sans text-[calc(14*var(--u))] leading-[calc(14*var(--u))] font-medium tracking-[0.1em] uppercase";
+const labelForSubmission = "font-sans text-[calc(19*var(--u))] leading-[calc(14*var(--u))] font-medium tracking-[0.1em] uppercase";
 
 /**
  * "Be the first to be notified" sheet (Figma catalog): frosted glass (only the sheet blurs what's
@@ -28,20 +29,24 @@ export function WaitlistDialog() {
     >
       <Container className="h-[calc(266*var(--u))] pt-[calc(31*var(--u))] max-md:h-auto max-md:px-6 max-md:pt-6 max-md:pb-6">
         <div className="mx-auto flex w-[calc(363*var(--u))] flex-col gap-[calc(33*var(--u))] max-md:w-full max-md:gap-6">
-          <div className="flex items-start justify-between">
-            <p className={label}>
-              Be the first to be notified
-              <br />
-              when we go live
-            </p>
+          <div className={`flex items-start ${status === "joined" ? "justify-end" : "justify-between"}`}>
+            {status === "joined" ? (
+              ""
+            ) : (
+              <p className={label}>
+                Be the first to be notified
+                <br />
+                when we go live
+              </p>
+            )}
             <button type="button" aria-label="Close" onClick={close} className="cursor-pointer">
               <OctagonX size={20} strokeWidth={1.5} absoluteStrokeWidth aria-hidden className="size-[calc(20*var(--u))]" />
             </button>
           </div>
 
           {status === "joined" ? (
-            <p className={label} role="status">
-              You&apos;re in! Welcome to Cozzi
+            <p className={labelForSubmission} role="status">
+              You&apos;re in! Welcome to Cozzi.
             </p>
           ) : (
             <form onSubmit={onSubmit} className="flex flex-col gap-[calc(13*var(--u))]">

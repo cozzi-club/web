@@ -19,7 +19,7 @@ const JEBENA = "/images/contact/jebena.jpg";
  * rises in word by word (`useArchReveal`). Figma spacing (2026-11-08), not a full-screen block.
  */
 export function Origins() {
-  const { section, arch, stage, frame, photoWindow, photo, copy, cta } = useArchReveal();
+  const { section, arch, stage, frame, photoWindow, photo, shade, copy, cta } = useArchReveal();
 
   return (
     // Top padding: Figma's 79px gap from the coffee gradient (On the horizon used to sit between).
@@ -70,13 +70,17 @@ export function Origins() {
               <Image src={JEBENA} alt="" fill sizes="100vw" />
             </div>
           </div>
+          {/* Phones: darkens the photo as the copy rises in (the light beam crosses the text there). */}
+          <div ref={shade} className="invisible absolute inset-0 bg-ink/70 md:hidden" />
         </div>
 
         {/* "Inside story, if you will" (Figma Frame 2523, 2026-11-21: white), centred on the full-screen
             photo; in design px (--u), so it scales with the page. Heading 120px tall, copy 28px
             below it, button 40px below the copy. The copy is 412px (Figma 405.4) because word masks
             add a few px — keeps Figma's three lines. */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mix-blend-difference">
+        {/* Difference blend on desktop; plain white on phones, over the dark overlay (difference on a
+            darkened photo would turn the copy grey where the light beam is). */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mix-blend-difference max-md:mix-blend-normal">
           <div ref={copy} className="flex w-[calc(486.8*var(--u))] flex-col items-center text-center text-body text-white max-md:[--u:calc(var(--u0)*0.68)]">
             <Heading className="leading-[calc(60*var(--u))]">
               <SplitWords text={"Inside story,\nif you will"} />

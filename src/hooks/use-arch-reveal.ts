@@ -21,6 +21,7 @@ const FULL = inset(0, 0, 0, 0, 0);
  *    the vase) to covering the screen. Starts only once the whole section is in view (pinned) and
  *    runs entirely within the pin.
  * 2. The copy rises in word by word (`[data-word]` spans inside overflow masks), then the button.
+ *    Phones: a dark overlay (`shade`) fades in over the photo with it, so the copy reads.
  * The section is shorter than the screen (Figma spacing), so it pins centred, like the original
  * full-screen version, instead of with the heading jammed under the nav; the stage is moved up by
  * the same offset so it still covers the screen. `arch` is the static arch, used to measure.
@@ -32,6 +33,7 @@ export function useArchReveal() {
   const frame = useRef<HTMLDivElement>(null);
   const photoWindow = useRef<HTMLDivElement>(null);
   const photo = useRef<HTMLDivElement>(null);
+  const shade = useRef<HTMLDivElement>(null);
   const copy = useRef<HTMLDivElement>(null);
   const cta = useRef<HTMLDivElement>(null);
 
@@ -119,6 +121,7 @@ export function useArchReveal() {
             { scale: 1, x: () => geometry.endX, y: 0, duration: 1.9 },
             0,
           )
+          .fromTo(shade.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35 }, 1.9)
           .fromTo(words, { y: 0, yPercent: 110 }, { y: 0, yPercent: 0, ease: "power3.out", duration: 0.35, stagger: { amount: 0.4 } }, 1.95)
           .fromTo(cta.current, { autoAlpha: 0, y: () => designPx(24) }, { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.25 }, 2.5)
           // Hold the finished view for a beat before the pin releases.
@@ -128,5 +131,5 @@ export function useArchReveal() {
     { scope: section },
   );
 
-  return { section, arch, stage, frame, photoWindow, photo, copy, cta };
+  return { section, arch, stage, frame, photoWindow, photo, shade, copy, cta };
 }
