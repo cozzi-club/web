@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/section";
 import { SizedImage } from "@/components/ui/sized-image";
 import { Heading, Text } from "@/components/ui/typography";
 import { UnblurWords } from "@/components/ui/unblur-words";
+import { BAG_RASTER } from "@/content/products";
 
 /** Coffee feature (Figma 2026-11-24): "Reserve" over the blurred bag (mobile too), one line + "Find out"; md+ at least 110% of the screen tall, mobile full screen. */
 export function ProductFeature({ id }: { id: string }) {
@@ -14,16 +15,18 @@ export function ProductFeature({ id }: { id: string }) {
         <Heading size="lg" className="absolute inset-x-0 top-[calc(109.92*var(--u))] text-center text-parchment max-md:top-[calc(60*var(--u))] max-md:text-[calc(35*var(--u))] max-md:leading-[calc(30*var(--u))]">
           <UnblurWords text="Reserve" />
         </Heading>
-        {/* Figma's blurred bag ("Frame 2565", progressive layer blur baked into the file; transparent).
-            The file covers Figma's render bounds: the 626×417 frame plus the blur's 10px spill. */}
-        <SizedImage
-          src="/images/product/reserve-bag-blur.png"
-          alt="COZZI single-origin coffee bag"
-          w={636.45}
-          h={437}
-          mobile={{ w: 402.6, h: 276.4 }}
-          className="-mt-[calc(7.02*var(--u))] ml-[calc(234.03*var(--u))] max-md:-mt-[calc(6.35*var(--u))] max-md:-ml-[calc(3.62*var(--u))]"
-        />
+        {/* The bag box (636.45×437, Figma's earlier render bounds) keeps the layout; inside it, Figma's
+            rasterized blurred bag (the same file as the coffee page hero) at 0.25, 3.4. Mobile: 0.6326×. */}
+        <div className="relative h-[calc(437*var(--u))] w-[calc(636.45*var(--u))] -mt-[calc(7.02*var(--u))] ml-[calc(234.03*var(--u))] max-md:h-[calc(276.4*var(--u))] max-md:w-[calc(402.6*var(--u))] max-md:-mt-[calc(6.35*var(--u))] max-md:-ml-[calc(3.62*var(--u))]">
+          <SizedImage
+            src={BAG_RASTER.src}
+            alt="COZZI single-origin coffee bag"
+            w={BAG_RASTER.w}
+            h={BAG_RASTER.h}
+            mobile={{ w: 408.62, h: 272.52 }}
+            className="absolute! top-[calc(3.4*var(--u))] left-[calc(0.25*var(--u))] max-md:top-[calc(2.15*var(--u))] max-md:left-[calc(0.16*var(--u))]"
+          />
+        </div>
 
         <div className="mt-[calc(21.03*var(--u))] flex items-end justify-between max-md:mt-[calc(40.95*var(--u))] max-md:flex-col max-md:items-start">
           {/* One line, its bottom on the button's bottom; a thin stroke thickens the hairline weight. */}

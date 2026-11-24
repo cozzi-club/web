@@ -1,5 +1,8 @@
 import type { Product } from "@/components/product-card";
 
+/** Figma's rasterized blurred bag (55141:109; transparent, blur baked in) and its size in design px. */
+export const BAG_RASTER = { src: "/images/product/coffee-hero-raster.png", w: 645.97, h: 430.81 };
+
 export type ProductSpec = { label: string; value: string };
 
 /** The /coffee page (Figma "COFFEE/product"). */
@@ -27,7 +30,7 @@ export const coffee: CoffeeDetail = {
   name: "Jimma Reserve",
   title: ["‘Jimma’", "Reserve"],
   hero: images.coffeeBag.src,
-  heroBlurred: "/images/product/coffee-hero-raster.png",
+  heroBlurred: BAG_RASTER.src,
   specs: [
     { label: "Origin", value: "Jimma Region, Ethiopia" },
     { label: "Process", value: "Natural, Washed" },
