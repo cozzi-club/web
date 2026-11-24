@@ -41,7 +41,7 @@ export function WaitlistDialog() {
 
           {status === "joined" ? (
             <p className={label} role="status">
-              Thank you! We&apos;ll let you know.
+              You&apos;re in! Welcome to Cozzi
             </p>
           ) : (
             <form onSubmit={onSubmit} className="flex flex-col gap-[calc(13*var(--u))]">

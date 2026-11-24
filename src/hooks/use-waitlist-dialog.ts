@@ -8,6 +8,9 @@ const OPEN_EVENT = "cozzi:waitlist";
 /** Session flag: the sheet has been shown this visit (tab session), by the visitor or automatically. */
 export const WAITLIST_SHOWN = "cozzi:waitlist-shown";
 
+/** The message on every waitlist email (the form only asks for the email). */
+const WAITLIST_MESSAGE = "I want in! Please add me to the COZZI waitlist.";
+
 /** Opens the waitlist sheet from anywhere (e.g. a product card). */
 export const openWaitlist = () => window.dispatchEvent(new Event(OPEN_EVENT));
 
@@ -43,12 +46,17 @@ export function useWaitlistDialog() {
 
   const close = () => dialog.current?.close();
 
-  // Sign-ups are emailed through Web3Forms (subject "Waitlist sign-up").
+  // Sign-ups are emailed through Web3Forms: only the email, plus a fixed message.
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const fields = formFields(event.currentTarget);
     setStatus("sending");
-    const result = await submitWeb3Form({ subject: "Waitlist sign-up (cozzi.club)", from_name: "COZZI website", ...fields });
+    const result = await submitWeb3Form({
+      subject: "Waitlist sign-up (cozzi.club)",
+      from_name: "COZZI website",
+      message: WAITLIST_MESSAGE,
+      ...fields,
+    });
     if (!result.ok) console.error("Web3Forms rejected the waitlist sign-up:", result.status, result.message);
     setStatus(result.ok ? "joined" : "error");
   };
