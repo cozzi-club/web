@@ -20,17 +20,17 @@ export function ProductHero({ product, nextId }: { product: CoffeeDetail; nextId
       <div className="relative flex flex-1 flex-col justify-center">
         <SiteHeader />
         <Container className="h-[calc(697*var(--u))] max-md:h-[calc(324*var(--u))]">
-          {/* Figma 2026-11-24 "Frame 2565": the bag blurred (baked into the file), 626×417 at 325, 175 in the
-              frame (this container starts 44.4px down it); the file covers the blur's 10px spill. Mobile:
-              the same bag at the previous mobile scale, centred. */}
+          {/* Figma 2026-11-24 "Frame 2565" (55141:109): the bag rasterized in Figma with its blur baked in
+              (4x, transparent), 626x417.5 at 325, 175.2 in the frame (this container starts 44.4px down
+              it). Mobile: the same image at the previous mobile scale (0.3647x), centred. */}
           <SizedImage
             src={product.heroBlurred}
             alt={product.name}
-            w={645.97}
-            h={437.37}
-            mobile={{ w: 235.6, h: 159.5 }}
+            w={626}
+            h={417.5}
+            mobile={{ w: 228.31, h: 152.27 }}
             priority
-            className="absolute! top-[calc(120.8*var(--u))] left-[calc(315*var(--u))] max-md:top-[calc(68.13*var(--u))] max-md:left-[calc(76.19*var(--u))]"
+            className="absolute! top-[calc(130.8*var(--u))] left-[calc(325*var(--u))] max-md:top-[calc(71.78*var(--u))] max-md:left-[calc(79.84*var(--u))]"
           />
           <h1 className="absolute top-[calc(570*var(--u))] left-[calc(136*var(--u))] font-display text-[calc(25*var(--u))] leading-[calc(25*var(--u))] font-bold tracking-[-0.03em] uppercase max-md:top-[calc(248.14*var(--u))] max-md:left-0 max-md:w-full max-md:text-center max-md:text-[calc(18*var(--u))] max-md:leading-[calc(18*var(--u))]">
             {product.title.map((line, index) => (
