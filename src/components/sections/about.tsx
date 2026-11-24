@@ -80,10 +80,12 @@ const mobileLayers: Layer[] = [
   { src: "/images/about/drum-cutout.png", x: 85.3, y: 1465, w: 331.58, h: 329.74 },
   { src: "/images/about/pour.jpg", alt: ALT.pour, x: 65.4, y: 1564.4, w: 180.49, h: 140.22 },
 ];
-// Painted after the black band (it sits on top of it).
+// Painted after the black band (it sits on top of it). The desktop pair: basket with the table cup on
+// top, at 0.549× (the basket's mobile size), the cup in the same place relative to the basket as on
+// desktop; centred on the page.
 const mobileBandLayers: Layer[] = [
-  { src: "/images/about/basket.png", x: 201, y: 928, w: 142, h: 276 },
-  { src: "/images/about/grinder.png", x: 52, y: 963, w: 264, h: 205 },
+  { src: "/images/about/basket.png", x: 184.85, y: 928, w: 142, h: 276 },
+  { src: "/images/about/table-cup.jpg", alt: ALT.cup, x: 63.15, y: 978.29, w: 196.54, h: 184.33 },
 ];
 
 function CollageLayer({ src, x, y, w, h, stagger, zoom, className, alt, attached = [], sizes }: Layer & { sizes: (w: number) => string }) {
