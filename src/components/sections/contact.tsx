@@ -70,9 +70,9 @@ export function Contact({ id, surface = "cream" }: { id?: string; surface?: keyo
                 on your mind?
               </span>
               <span className="md:hidden">
-                Have a coffee, product, or <br />
-                collaboration in mind? <br />
-                Tell us&nbsp;about it.
+                Got a question about the <br />
+                beans or something else <br />
+                on your mind?
               </span>
             </Text>
             <ButtonLink
@@ -88,7 +88,7 @@ export function Contact({ id, surface = "cream" }: { id?: string; surface?: keyo
 
         {/* Mobile: the art's box has 51.9px of empty space above the sun and 69.6px below the art,
             pulled in so the sun overlaps the heading by 12.8px and the copy sits 30px below the art. */}
-        <div className="shrink-0 max-md:order-2 max-md:-mt-[calc(64.7*var(--u))] max-md:-mb-[calc(69.6*var(--u))]">
+        <div className="shrink-0 max-md:order-2 max-md:-mt-[calc(50.7*var(--u))] max-md:-mb-[calc(69.6*var(--u))]">
           <Collage />
         </div>
       </Container>
