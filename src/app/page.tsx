@@ -7,6 +7,7 @@ import { Hero } from "@/components/sections/hero";
 import { Origins } from "@/components/sections/origins";
 import { Philosophy } from "@/components/sections/philosophy";
 import { ProductFeature } from "@/components/sections/product-feature";
+import { WaitlistAutoOpen } from "@/components/waitlist-auto-open";
 import { brandJsonLd, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -30,6 +31,7 @@ export default function Home() {
         <Contact id="contact" />
       </main>
       <Footer />
+      <WaitlistAutoOpen />
     </>
   );
 }

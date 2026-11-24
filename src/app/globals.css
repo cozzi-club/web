@@ -120,7 +120,7 @@
 }
 
 /*
- * Sticky split sections (Contact, Music), md+. The copy enters with the section like a normal layout,
+ * Sticky split sections (Music), md+. The copy enters with the section like a normal layout,
  * then `position: sticky; bottom` holds it in the lower part of the screen while the visual column
  * keeps scrolling up. Both sit at the bottom of the row, so they release together exactly when their
  * bottoms line up — and the sticky offset equals the section's bottom padding, so that's also where

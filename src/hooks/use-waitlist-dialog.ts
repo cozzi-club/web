@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { formFields, submitWeb3Form } from "@/lib/web3forms";
 
 const OPEN_EVENT = "cozzi:waitlist";
+
+/** Session flag: the sheet has been shown this visit (tab session), by the visitor or automatically. */
+export const WAITLIST_SHOWN = "cozzi:waitlist-shown";
 
 /** Opens the waitlist sheet from anywhere (e.g. a product card). */
 export const openWaitlist = () => window.dispatchEvent(new Event(OPEN_EVENT));
@@ -13,13 +17,16 @@ export const openWaitlist = () => window.dispatchEvent(new Event(OPEN_EVENT));
  */
 export function useWaitlistDialog() {
   const dialog = useRef<HTMLDialogElement>(null);
-  const [joined, setJoined] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "joined" | "error">("idle");
 
   useEffect(() => {
     const el = dialog.current!;
     const root = document.documentElement;
     const open = () => {
       if (el.open) return;
+      try {
+        sessionStorage.setItem(WAITLIST_SHOWN, "1");
+      } catch {}
       el.showModal();
       root.style.overflow = "hidden";
     };
@@ -36,11 +43,15 @@ export function useWaitlistDialog() {
 
   const close = () => dialog.current?.close();
 
-  // TODO: no email service is connected yet — wire this to the mailing list provider.
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  // Sign-ups are emailed through Web3Forms (subject "Waitlist sign-up").
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setJoined(true);
+    const fields = formFields(event.currentTarget);
+    setStatus("sending");
+    const result = await submitWeb3Form({ subject: "Waitlist sign-up (cozzi.club)", from_name: "COZZI website", ...fields });
+    if (!result.ok) console.error("Web3Forms rejected the waitlist sign-up:", result.status, result.message);
+    setStatus(result.ok ? "joined" : "error");
   };
 
-  return { dialog, joined, close, onSubmit };
+  return { dialog, status, close, onSubmit };
 }

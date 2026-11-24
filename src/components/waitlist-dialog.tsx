@@ -15,7 +15,7 @@ const label = "font-sans text-[calc(14*var(--u))] leading-[calc(14*var(--u))] fo
  * click. Rendered once, in the root layout.
  */
 export function WaitlistDialog() {
-  const { dialog, joined, close, onSubmit } = useWaitlistDialog();
+  const { dialog, status, close, onSubmit } = useWaitlistDialog();
 
   return (
     <dialog
@@ -39,7 +39,7 @@ export function WaitlistDialog() {
             </button>
           </div>
 
-          {joined ? (
+          {status === "joined" ? (
             <p className={label} role="status">
               Thank you! We&apos;ll let you know.
             </p>
@@ -54,12 +54,20 @@ export function WaitlistDialog() {
                 autoComplete="email"
                 placeholder="Enter e-mail address"
               />
+              {/* Honeypot: hidden from people, ticked by bots; Web3Forms drops those submissions. */}
+              <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden />
               <button
                 type="submit"
-                className={`h-[calc(45*var(--u))] cursor-pointer rounded-[calc(2*var(--u))] border border-[#8e8e8e] transition-colors hover:bg-[#141414] hover:text-cream ${label}`}
+                disabled={status === "sending"}
+                className={`h-[calc(45*var(--u))] cursor-pointer rounded-[calc(2*var(--u))] border border-[#8e8e8e] transition-colors hover:bg-[#141414] hover:text-cream disabled:cursor-wait disabled:opacity-60 ${label}`}
               >
-                Submit
+                {status === "sending" ? "Sending" : "Submit"}
               </button>
+              {status === "error" && (
+                <p role="alert" className="font-sans text-[calc(11*var(--u))] leading-[calc(13*var(--u))] font-medium">
+                  Something went wrong. Please try again.
+                </p>
+              )}
             </form>
           )}
         </div>

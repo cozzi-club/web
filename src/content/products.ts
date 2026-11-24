@@ -10,8 +10,10 @@ export type CoffeeDetail = {
   specs: ProductSpec[];
   /** Dark box under the specs: status on the left, the online store (opens the waitlist) on the right. */
   availability: { title: string; note: string };
-  /** Large hero image (transparent product shot, 3:2). */
+  /** Large hero image (transparent product shot, 3:2); the share image uses it. */
   hero: string;
+  /** The page hero's bag: Figma's blurred render (transparent, covers the blur's spill). */
+  heroBlurred: string;
 };
 
 const images = {
@@ -25,6 +27,7 @@ export const coffee: CoffeeDetail = {
   name: "Jimma Reserve",
   title: ["‘Jimma’", "Reserve"],
   hero: images.coffeeBag.src,
+  heroBlurred: "/images/product/coffee-hero-blur.png",
   specs: [
     { label: "Origin", value: "Jimma Region, Ethiopia" },
     { label: "Process", value: "Natural, Washed" },

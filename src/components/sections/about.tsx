@@ -18,7 +18,8 @@ const fig = (x: number) => x - SHIFT;
 const TRACK = { width: fig(6235), height: 736 };
 // Mobile: the vertical "mob" frame (390px wide), without its own header (the page uses SiteHeader) and contact block.
 // Ends 47.5px below the wax seal's visible edge, the same gap the contact block leaves above its heading.
-const MOBILE = { width: 390, height: 2980.1 };
+// Figma 2026-11-24 dropped the score, stamps and origin copy: everything from the origin down moved up.
+const MOBILE = { width: 390, height: 2790.1 };
 
 /**
  * Collage piece, in track px. `stagger`: order within its collage cluster (later pieces drift a little
@@ -39,11 +40,6 @@ type Layer = {
   attached?: Layer[];
 };
 
-// Scans at full ink. Figma shows them at 20%, but its downscaling keeps strokes heavier; 30% reads the same.
-const letter = { src: "/images/about/letter.png", className: "opacity-30" };
-// On dark backgrounds the handwriting turns white (Figma 2026-11-08).
-const letterOnDark = { ...letter, className: "opacity-40 invert" };
-const score = { src: "/images/about/score.png", className: "opacity-30" };
 
 // Alt text for the photos (image search reads these).
 const ALT = {
@@ -58,8 +54,6 @@ const ALT = {
 const stillLife: Layer = { src: "/images/about/still-life.jpg", alt: ALT.stillLife, x: INTRO.panel - 8, y: 0, w: INTRO.photo, h: 736, zoom: 1.5 };
 const collageLayers: Layer[] = [
   { src: "/images/about/paper.jpg", x: 4722.11, y: 0, w: 254.16, h: 599.39, stagger: 1 },
-  { ...letter, x: 3211.72, y: 24.57, w: 373.57, h: 90.94, stagger: 1 },
-  { src: "/images/about/ephemera-stamps.png", x: 4832.32, y: 86.7, w: 202.69, h: 132.67, stagger: 2 },
   { src: "/images/about/basket.png", x: 2446.18, y: 126.5, w: 258.6, h: 501.01, stagger: 1 },
   // 40px left of Figma (3408.4): its drift runs up to ~34px ahead of the cup photo's, which would
   // open a gap between them.
@@ -68,7 +62,6 @@ const collageLayers: Layer[] = [
   { src: "/images/about/table-cup.jpg", alt: ALT.cup, x: 2224.55, y: 218.08, w: 357.93, h: 335.68, stagger: 0 },
   { src: "/images/about/map-3.jpg", x: 5644.68, y: 44.02, w: 215.01, h: 435.42, stagger: 1 },
   { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 5710.05, y: 241.65, w: 433.81, h: 286.2, stagger: 2 },
-  { ...score, x: 3677.4, y: 637.67, w: 277.53, h: 69.79, stagger: 2 },
   { src: "/images/about/landscape.png", alt: ALT.landscape, x: 4485.24, y: 280.38, w: 429.91, h: 252.17, stagger: 0 },
   // No stagger: the seal stays put on the track while the map and farmer drift past it.
   { src: "/images/about/wax-seal.png", x: 5534.8, y: 383.59, w: 370.74, h: 322.57 },
@@ -76,21 +69,19 @@ const collageLayers: Layer[] = [
 
 const mobileLayers: Layer[] = [
   { src: "/images/about/still-life-m.jpg", alt: ALT.stillLife, x: 0, y: 448.96, w: 390, h: 423.08 },
-  { src: "/images/about/map-m-3.jpg", x: 0.03, y: 2712.93, w: 232.31, h: 114.71 },
-  { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 94.44, y: 2765.36, w: 205.81, h: 135.78 },
-  { src: "/images/about/wax-seal-m.png", x: 201.18, y: 2818.19, w: 188.82, h: 159.41 },
-  { src: "/images/about/paper-m.jpg", x: 0, y: 2241.37, w: 351.42, h: 149.01 },
-  { src: "/images/about/ephemera-stamps.png", x: 194, y: 2352, w: 119, h: 78 },
-  { src: "/images/about/landscape.png", alt: ALT.landscape, x: 74, y: 2194, w: 239, h: 140 },
+  { src: "/images/about/map-m-3.jpg", x: 0, y: 2522.9, w: 232.31, h: 114.71 },
+  { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 94.44, y: 2575.4, w: 205.81, h: 135.78 },
+  { src: "/images/about/wax-seal-m.png", x: 201.18, y: 2628.2, w: 188.82, h: 159.41 },
+  // Same crop as before, Figma now draws it 2.3% smaller.
+  { src: "/images/about/paper-m.jpg", x: -2.7, y: 2084.5, w: 343.3, h: 145.6 },
+  { src: "/images/about/landscape.png", alt: ALT.landscape, x: 74.4, y: 2043.6, w: 239, h: 140.2 },
   // The desktop cluster beside "The radiant throughline" (drum cut-out, pour photo on top), at 0.45×,
   // centred in the gap under that story (2026-11-22).
   { src: "/images/about/drum-cutout.png", x: 85.3, y: 1465, w: 331.58, h: 329.74 },
   { src: "/images/about/pour.jpg", alt: ALT.pour, x: 65.4, y: 1564.4, w: 180.49, h: 140.22 },
-  { ...score, x: 100, y: 1784, w: 190, h: 48 },
 ];
 // Painted after the black band (it sits on top of it).
 const mobileBandLayers: Layer[] = [
-  { ...letterOnDark, x: 113, y: 857, w: 186, h: 45 },
   { src: "/images/about/basket.png", x: 201, y: 928, w: 142, h: 276 },
   { src: "/images/about/grinder.png", x: 52, y: 963, w: 264, h: 205 },
 ];
@@ -172,7 +163,6 @@ const stories = {
         of its own
       </>
     ),
-    body: "The place that doesn't need to grab its reputation from another has merit. Jimma has been producing coffee that is hard to confuse with anywhere else for its character.",
   },
   ethical: {
     label: "Ethical sourcing",
@@ -230,15 +220,10 @@ function AboutTrack() {
       >
         {stories.story.body}
       </StoryBlock>
-      <StoryBlock
-        label={stories.origin.label}
-        title={stories.origin.title}
-        gap={33}
-        className="absolute w-[calc(365*var(--u))]"
-        style={{ left: u(fig(4013)), top: u(176) }}
-      >
-        {stories.origin.body}
-      </StoryBlock>
+      {/* Figma 2026-11-24: the origin block at 1.2708x (label 13.84px, title 76px, 463.8 wide), no description. */}
+      <Place x={fig(3963.4)} y={176}>
+        <StoryBlock label={stories.origin.label} title={stories.origin.title} gap={33} className="w-[calc(365*var(--u))] [--u:1.2708px]" />
+      </Place>
       <button
         type="button"
         data-scroll-to={fig(5324)}
@@ -289,17 +274,15 @@ function AboutStack() {
             {stories.story.body}
           </StoryBlock>
         </Place>
-        <Place x={62} y={1866}>
+        <Place x={62} y={1796}>
           <StoryBlock
             label={stories.origin.label}
             title={stories.origin.title}
             gap={33}
             className="w-[calc(365*var(--u))] text-body [--u:calc(var(--u0)*0.726)]"
-          >
-            {stories.origin.body}
-          </StoryBlock>
+          />
         </Place>
-        <Place x={40} y={2461}>
+        <Place x={40} y={2270.7}>
           <StoryBlock
             label={stories.ethical.label}
             title={stories.ethical.title}

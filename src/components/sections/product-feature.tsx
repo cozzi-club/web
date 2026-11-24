@@ -5,7 +5,7 @@ import { SizedImage } from "@/components/ui/sized-image";
 import { Heading, Text } from "@/components/ui/typography";
 import { UnblurWords } from "@/components/ui/unblur-words";
 
-/** Coffee feature (Figma 2026-11-20): "Reserve" over the bag (mobile too), copy + "Find out"; md+ at least 110% of the screen tall, mobile full screen. */
+/** Coffee feature (Figma 2026-11-24): "Reserve" over the blurred bag (mobile too), one line + "Find out"; md+ at least 110% of the screen tall, mobile full screen. */
 export function ProductFeature({ id }: { id: string }) {
   return (
     // overflow-x-clip: the mobile bag (Figma 396px + 3px offset) bleeds past the 390px frame.
@@ -14,21 +14,21 @@ export function ProductFeature({ id }: { id: string }) {
         <Heading size="lg" className="absolute inset-x-0 top-[calc(109.92*var(--u))] text-center text-parchment max-md:top-[calc(60*var(--u))] max-md:text-[calc(35*var(--u))] max-md:leading-[calc(30*var(--u))]">
           <UnblurWords text="Reserve" />
         </Heading>
+        {/* Figma's blurred bag ("Frame 2565", progressive layer blur baked into the file; transparent).
+            The file covers Figma's render bounds: the 626×417 frame plus the blur's 10px spill. */}
         <SizedImage
-          src="/images/product/coffee-bag.png"
+          src="/images/product/reserve-bag-blur.png"
           alt="COZZI single-origin coffee bag"
-          w={625.97}
-          h={417.37}
-          mobile={{ w: 396, h: 264 }}
-          className="ml-[calc(238*var(--u))] max-md:ml-[calc(3*var(--u))]"
+          w={636.45}
+          h={437}
+          mobile={{ w: 402.6, h: 276.4 }}
+          className="-mt-[calc(7.02*var(--u))] ml-[calc(234.03*var(--u))] max-md:-mt-[calc(6.35*var(--u))] max-md:-ml-[calc(3.62*var(--u))]"
         />
 
-        <div className="mt-[calc(33.63*var(--u))] flex items-start justify-between max-md:mt-[calc(47*var(--u))] max-md:flex-col">
-          {/* Figma: two lines (26.5px apart), top-aligned with the button; a thin stroke thickens the
-              hairline weight. */}
+        <div className="mt-[calc(21.03*var(--u))] flex items-end justify-between max-md:mt-[calc(40.95*var(--u))] max-md:flex-col max-md:items-start">
+          {/* One line, its bottom on the button's bottom; a thin stroke thickens the hairline weight. */}
           <Text className="w-[calc(480*var(--u))] [-webkit-text-stroke:calc(0.5*var(--u))_currentColor] max-md:ml-[calc(40*var(--u))] max-md:w-[calc(310*var(--u))] max-md:text-center max-md:text-[calc(13*var(--u))] max-md:leading-[calc(17*var(--u))] max-md:[-webkit-text-stroke:calc(0.35*var(--u))_var(--color-bone)]">
-            <span className="block">Single-origin coffee from Jimma, Ethiopia.</span>
-            <span className="block md:mt-[calc(4*var(--u))]">Medium roast, a softer &amp; fuller expression of the bean.</span>
+            Single-origin coffee from Jimma, Ethiopia.
           </Text>
           <ButtonLink
             href="/coffee"
