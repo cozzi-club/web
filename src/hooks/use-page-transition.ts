@@ -1,8 +1,10 @@
 "use client";
 
-import { useTransitionRouter } from "next-view-transitions";
-import type { MouseEvent } from "react";
+import { useRouter } from "next/navigation";
+import { startTransition, type MouseEvent } from "react";
 import { CURVE_DURATION, CURVE_EASE, curvedClip } from "@/lib/curved-clip";
+import { startPageTransition } from "@/lib/page-transition";
+import { haltSmoothScroll } from "@/lib/smooth-scroll";
 
 /**
  * Curved wipe (View Transitions API): the new page rises from the bottom behind a curved top edge
@@ -12,7 +14,9 @@ function curveReveal() {
   const w = window.innerWidth;
   const h = window.innerHeight;
   const edge = (y: number, bulge: number) => curvedClip(w, h, y, bulge, "below");
-  const timing = { duration: CURVE_DURATION, easing: CURVE_EASE };
+  // fill "both": the new page starts hidden by CSS (no frame of it before this runs) and both layers
+  // hold their end state until the transition is torn down.
+  const timing = { duration: CURVE_DURATION, easing: CURVE_EASE, fill: "both" as const };
 
   document.documentElement.animate(
     { clipPath: [edge(h, 0), edge(h * 0.45, h * 0.3), edge(0, 0)] },
@@ -26,7 +30,7 @@ function curveReveal() {
 
 /** A click handler for links: in-site navigations to another page play the curved wipe. */
 export function usePageTransition() {
-  const router = useTransitionRouter();
+  const router = useRouter();
 
   return (event: MouseEvent<HTMLAnchorElement>) => {
     const link = event.currentTarget;
@@ -40,6 +44,8 @@ export function usePageTransition() {
     if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return;
 
     event.preventDefault();
-    router.push(url.pathname + url.search + url.hash, { onTransitionReady: curveReveal });
+    haltSmoothScroll();
+    const href = url.pathname + url.search + url.hash;
+    startPageTransition(() => startTransition(() => router.push(href)), curveReveal);
   };
 }

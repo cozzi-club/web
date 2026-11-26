@@ -25,7 +25,7 @@ export function Origins() {
     // Top padding: Figma's 79px gap from the coffee gradient (On the horizon used to sit between).
     <Section
       ref={section}
-      className="overflow-x-clip bg-cream pt-[calc(79.29*var(--u))] md:min-h-0! max-md:pt-[calc(48*var(--u))] max-md:pb-[calc(60*var(--u))]"
+      className="bg-cream pt-[calc(79.29*var(--u))] md:min-h-0! max-md:pt-[calc(48*var(--u))] max-md:pb-[calc(60*var(--u))]"
     >
       {/* Heading and arch form one block (arch bottom 98.7px above the contact collage, which the
           contact section's top padding provides). The arch sits 77px higher than Figma (275.42 vs
@@ -59,10 +59,12 @@ export function Origins() {
       {/* lvh: the screen height with mobile browser toolbars hidden, so the layer still covers the
           screen after Chrome hides its address bar on scroll (svh left a gap; dvh resizes mid-pin).
           Same as vh on desktop. 2px taller: smooth scrolling pins at fractional offsets, which would
-          leave a sub-pixel line of the section below the stage. */}
+          leave a sub-pixel line of the section below the stage. The stage clips its own overflow (the
+          wide photo on phones); the section must not clip (Safari clipped this full-screen layer to the
+          section's box when the section had overflow-x: clip). */}
       <div
         ref={stage}
-        className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100lvh+2px)]"
+        className="pointer-events-none invisible absolute inset-x-0 top-0 z-10 h-[calc(100lvh+2px)] overflow-hidden"
       >
         <div ref={frame} aria-hidden className="absolute inset-0 bg-ink">
           <div ref={photoWindow} className="absolute inset-0 overflow-hidden">

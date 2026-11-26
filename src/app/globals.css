@@ -169,6 +169,8 @@
 }
 ::view-transition-new(root) {
   z-index: 1;
+  /* Hidden until the curved wipe's animation takes over (WebKit otherwise paints one frame first). */
+  clip-path: inset(100% 0 0 0);
 }
 ::view-transition {
   background-color: var(--color-ink);
