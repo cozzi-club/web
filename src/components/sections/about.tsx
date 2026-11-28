@@ -19,7 +19,9 @@ const TRACK = { width: fig(6235), height: 736 };
 // Mobile: the vertical "mob" frame (390px wide), without its own header (the page uses SiteHeader) and contact block.
 // Ends 47.5px below the wax seal's visible edge, the same gap the contact block leaves above its heading.
 // Figma 2026-11-24 dropped the score, stamps and origin copy: everything from the origin down moved up.
-const MOBILE = { width: 390, height: 2790.1 };
+// 2026-11-28 (longer story and ethical copy): 40px from each of those texts to the image below it; the
+// drum cluster and everything under it moved 43px down, the map / farmer / seal another 70.8px.
+const MOBILE = { width: 390, height: 2903.9 };
 
 /**
  * Collage piece, in track px. `stagger`: order within its collage cluster (later pieces drift a little
@@ -69,16 +71,16 @@ const collageLayers: Layer[] = [
 
 const mobileLayers: Layer[] = [
   { src: "/images/about/still-life-m.jpg", alt: ALT.stillLife, x: 0, y: 448.96, w: 390, h: 423.08 },
-  { src: "/images/about/map-m-3.jpg", x: 0, y: 2522.9, w: 232.31, h: 114.71 },
-  { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 94.44, y: 2575.4, w: 205.81, h: 135.78 },
-  { src: "/images/about/wax-seal-m.png", x: 201.18, y: 2628.2, w: 188.82, h: 159.41 },
+  { src: "/images/about/map-m-3.jpg", x: 0, y: 2636.7, w: 232.31, h: 114.71 },
+  { src: "/images/about/farmer-2.jpg", alt: ALT.farmer, x: 94.44, y: 2689.2, w: 205.81, h: 135.78 },
+  { src: "/images/about/wax-seal-m.png", x: 201.18, y: 2742, w: 188.82, h: 159.41 },
   // Same crop as before, Figma now draws it 2.3% smaller.
-  { src: "/images/about/paper-m.jpg", x: -2.7, y: 2084.5, w: 343.3, h: 145.6 },
-  { src: "/images/about/landscape.png", alt: ALT.landscape, x: 74.4, y: 2043.6, w: 239, h: 140.2 },
+  { src: "/images/about/paper-m.jpg", x: -2.7, y: 2127.5, w: 343.3, h: 145.6 },
+  { src: "/images/about/landscape.png", alt: ALT.landscape, x: 74.4, y: 2086.6, w: 239, h: 140.2 },
   // The desktop cluster beside "The radiant throughline" (drum cut-out, pour photo on top), at 0.45×,
   // centred in the gap under that story (2026-11-22).
-  { src: "/images/about/drum-cutout.png", x: 85.3, y: 1465, w: 331.58, h: 329.74 },
-  { src: "/images/about/pour.jpg", alt: ALT.pour, x: 65.4, y: 1564.4, w: 180.49, h: 140.22 },
+  { src: "/images/about/drum-cutout.png", x: 85.3, y: 1508, w: 331.58, h: 329.74 },
+  { src: "/images/about/pour.jpg", alt: ALT.pour, x: 65.4, y: 1607.4, w: 180.49, h: 140.22 },
 ];
 // Painted after the black band (it sits on top of it). The desktop pair: basket with the table cup on
 // top, at 0.549× (the basket's mobile size), the cup in the same place relative to the basket as on
@@ -151,7 +153,7 @@ const stories = {
         throughline
       </>
     ),
-    body: "We exist to restore the essence of intentionality by actively giving meaning to the currently rushed and overlooked moment in everyday life whilst also honouring, celebrating and educating our audience as well as the wider world about the heritage, deep history and culture surrounding one of the most consumed commodities for centuries and beyond.",
+    body: "In a world that rarely slows down, we invite people to rediscover solace in the everyday, encouraging a more intentional way of living through the simple ritual of coffee. By creating space for presence, curiosity and connection, we seek to deepen appreciation for what we consume, while honouring, celebrating and sharing the rich heritage, history and cultures that have shaped coffee and connected communities for generations.",
   },
   origin: {
     label: "Origin",
@@ -175,7 +177,7 @@ const stories = {
         the work
       </>
     ),
-    body: "Good coffee should mean something to farmers who grow it. We care about where the coffee goes after it leaves the farm and what comes back. So we source responsibly and give back to the farmers behind it, because their work should have a stake in what it becomes. For us, that is part of making coffee properly.",
+    body: "The story of coffee extends far beyond the cup. We believe its value should reach the farmers and communities behind it. That's why we care about where our coffee comes from, where it goes, and what returns to those who make it possible. Through responsible sourcing and meaningful contributions, we aim to ensure their work is recognised, valued and appreciated. In doing so, we hope to honour the generations of knowledge, care and tradition that continue to shape coffee today.",
   },
 };
 
@@ -276,7 +278,7 @@ function AboutStack() {
             {stories.story.body}
           </StoryBlock>
         </Place>
-        <Place x={62} y={1796}>
+        <Place x={62} y={1839}>
           <StoryBlock
             label={stories.origin.label}
             title={stories.origin.title}
@@ -284,7 +286,7 @@ function AboutStack() {
             className="w-[calc(365*var(--u))] text-body [--u:calc(var(--u0)*0.726)]"
           />
         </Place>
-        <Place x={40} y={2270.7}>
+        <Place x={40} y={2313.7}>
           <StoryBlock
             label={stories.ethical.label}
             title={stories.ethical.title}

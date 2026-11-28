@@ -15,7 +15,7 @@ const JEBENA = "/images/contact/jebena.jpg";
 
 /**
  * "The door into the club": heading + arched jebena photo, leading into the contact
- * screen. md+: scrolling expands the arch to a full-screen photo, then "Inside story, if you will"
+ * screen. md+: scrolling expands the arch to a full-screen photo, then "A glimpse into our world"
  * rises in word by word (`useArchReveal`). Figma spacing (2026-11-08), not a full-screen block.
  */
 export function Origins() {
@@ -76,7 +76,7 @@ export function Origins() {
           <div ref={shade} className="invisible absolute inset-0 bg-ink/70 md:hidden" />
         </div>
 
-        {/* "Inside story, if you will" (Figma Frame 2523, 2026-11-21: white), centred on the full-screen
+        {/* "A glimpse into our world" (Figma Frame 2523, 2026-11-21: white), centred on the full-screen
             photo; in design px (--u), so it scales with the page. Heading 120px tall, copy 28px
             below it, button 40px below the copy. The copy is 412px (Figma 405.4) because word masks
             add a few px — keeps Figma's three lines. */}
@@ -85,10 +85,10 @@ export function Origins() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mix-blend-difference max-md:mix-blend-normal">
           <div ref={copy} className="flex w-[calc(486.8*var(--u))] flex-col items-center text-center text-body text-white max-md:[--u:calc(var(--u0)*0.68)]">
             <Heading className="leading-[calc(60*var(--u))]">
-              <SplitWords text={"Inside story,\nif you will"} />
+              <SplitWords text={"A glimpse into\nour world"} />
             </Heading>
             <Text variant="lead" className="mt-[calc(28*var(--u))] w-[calc(412*var(--u))] text-[calc(35.82*var(--u))] leading-[calc(34.03*var(--u))] tracking-[-0.02em]">
-              <SplitWords text="A place, a way of working, and intentional choices made along the way." />
+              <SplitWords text="A place where thoughtful ideas, meaningful stories and intentional choices come together." />
             </Text>
             <div ref={cta} className="pointer-events-auto invisible mt-[calc(40*var(--u))]">
               <ButtonLink href="/philosophy" tone="white">

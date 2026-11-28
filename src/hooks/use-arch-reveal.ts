@@ -14,7 +14,7 @@ const inset = (t: number, r: number, b: number, l: number, radius: number) =>
 const FULL = inset(0, 0, 0, 0, 0);
 
 /**
- * Scroll-scrubbed arch ("the door") → full-screen jebena → "Inside story, if you will" (desktop and
+ * Scroll-scrubbed arch ("the door") → full-screen jebena → "A glimpse into our world" (desktop and
  * mobile, motion allowed). The original version, as requested in Figma:
  * 1. Two clip-paths open from the arch's shape to the viewport — the black frame, then the
  *    photo window inside it — while the photo scales from the arch crop (fit to height, framed on
